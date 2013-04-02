@@ -5,5 +5,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="common_padding">10dp</dimen>
     <color name="common_border_color">#33333333</color>
+    <color name="address_bar_background_color">#33ff0000</color>
+    <color name="bottom_bar_background_color">#3300ff00</color>
 
 </resources>

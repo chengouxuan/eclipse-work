@@ -5,9 +5,10 @@
     android:orientation="vertical" >
 
     <LinearLayout
+        android:layout_gravity="top"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:background="@color/common_border_color"
+        android:layout_height="44dp"
+        android:background="@color/address_bar_background_color"
         android:paddingBottom="@dimen/common_padding"
         android:paddingLeft="@dimen/common_padding"
         android:paddingRight="@dimen/common_padding"
@@ -18,7 +19,7 @@
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="160dp"
         android:background="@color/common_border_color"
         android:paddingBottom="@dimen/common_padding"
         android:paddingLeft="@dimen/common_padding"
@@ -27,13 +28,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="182dp"
+            android:layout_height="wrap_content"
             android:background="@color/common_border_color"
-	        android:paddingBottom="@dimen/common_padding"
-	        android:paddingLeft="@dimen/common_padding"
-	        android:paddingRight="@dimen/common_padding"
-	        android:paddingTop="@dimen/common_padding"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/common_padding"
+            android:paddingLeft="@dimen/common_padding"
+            android:paddingRight="@dimen/common_padding"
+            android:paddingTop="@dimen/common_padding" >
             
             <TextView
                 android:layout_width="match_parent"
@@ -150,17 +151,41 @@
     </ScrollView>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        
-        
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/common_border_color"
-                android:text="@string/bottom_button" />
-        
+        android:layout_height="wrap_content"
+        android:background="@color/bottom_bar_background_color"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="@color/common_border_color"
+            android:text="@string/bottom_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="@color/common_border_color"
+            android:text="@string/bottom_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="@color/common_border_color"
+            android:text="@string/bottom_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="@color/common_border_color"
+            android:text="@string/bottom_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="@color/common_border_color"
+            android:text="@string/bottom_button" />
     </LinearLayout>
 
 </LinearLayout>
