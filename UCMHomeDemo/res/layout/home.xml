@@ -7,7 +7,6 @@
 
     <RelativeLayout
         android:id="@+id/addressBarLayout"
-        android:layout_gravity="top"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:background="@color/address_bar_background_color"
@@ -16,6 +15,87 @@
         android:paddingRight="@dimen/common_padding"
         android:paddingTop="@dimen/common_padding"
         android:layout_alignParentTop="true" >
+
+        <RelativeLayout
+            android:id="@+id/addressBarStarButton"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="#330000ff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            
+		    <ImageView
+		        android:id="@+id/starButton"
+		        android:contentDescription="@string/empty_description"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_centerVertical="true"
+		        android:src="@drawable/smarturl_bookmark_ico" />
+
+		     <Button
+		        android:id="@+id/button1"
+		        android:layout_width="0dp"
+		        android:layout_height="0dp"
+				android:layout_alignLeft="@+id/starButton"
+				android:layout_alignRight="@+id/starButton"
+				android:layout_alignTop="@+id/starButton"
+				android:layout_alignBottom="@+id/starButton"
+				android:onClick="anyButtonClicked"
+			    android:background="#00000000"  />
+
+        </RelativeLayout>
+        
+        
+	    <ImageView
+	        android:id="@+id/globImage"
+            android:layout_centerVertical="true"
+	        android:layout_toRightOf="@+id/addressBarStarButton"
+	        android:contentDescription="@string/empty_description"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+            android:background="#33ff00ff"
+	        android:src="@drawable/url_bar_icon2" />
+	    
+	    <EditText 
+	        android:id="@+id/addressBarEditText"
+            android:layout_centerVertical="true"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:background="#33ffff00"
+	        android:hint="@string/type_in_address_hint"
+	        android:layout_toLeftOf="@+id/quickButton"
+	        android:layout_toRightOf="@id/globImage" />   
+	        
+	    
+        <RelativeLayout
+            android:id="@+id/quickButtonOuterLayout"
+            android:layout_centerVertical="true"
+            android:background="#330000ff"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+		     
+		    <ImageView
+		        android:id="@+id/quickButton"
+		        android:contentDescription="@string/empty_description"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+	            android:background="#33ff00ff"
+		        android:src="@drawable/quick_button" />
+
+		     <Button
+            	android:id="@+id/button2"
+		        android:layout_width="0dp"
+		        android:layout_height="0dp"
+				android:layout_alignLeft="@+id/quickButton"
+				android:layout_alignRight="@+id/quickButton"
+				android:layout_alignTop="@+id/quickButton"
+				android:layout_alignBottom="@+id/quickButton"
+				android:onClick="anyButtonClicked"
+	            android:background="#00000000"  />
+
+		 </RelativeLayout>
+	    
     </RelativeLayout>
 
     <ScrollView
@@ -155,43 +235,144 @@
 
     <LinearLayout
         android:id="@+id/bottomBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="44dp"
+        android:baselineAligned="false"
         android:background="@color/bottom_bar_background_color"
-        android:gravity="bottom"
         android:layout_gravity="bottom"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:background="@color/common_border_color"
-            android:text="@string/bottom_button" />
+	        <RelativeLayout
+	            android:id="@+id/bottomBarItemLayout1"
+	            android:layout_weight="1"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content" >
+			     
+			    <ImageView
+			        android:id="@+id/bottomBarButtonImage1"
+			        android:contentDescription="@string/empty_description"
+			        android:layout_width="fill_parent"
+			        android:layout_height="fill_parent"
+			        android:src="@drawable/bottom_button1" />
+	
+			     <Button
+			         android:id="@+id/bottomBarButton1"
+			         android:layout_width="0dp"
+			         android:layout_height="0dp"
+			         android:layout_alignBottom="@+id/bottomBarButtonImage1"
+			         android:layout_alignLeft="@+id/bottomBarButtonImage1"
+			         android:layout_alignRight="@+id/bottomBarButtonImage1"
+			         android:layout_alignTop="@+id/bottomBarButtonImage1"
+			         android:onClick="anyButtonClicked"
+			         android:background="#00000000" />
+	
+			 </RelativeLayout>
+			 
+	        <RelativeLayout
+	            android:id="@+id/bottomBarItemLayout2"
+	            android:layout_weight="1"
+	            android:layout_width="0dp"
+	            android:layout_height="fill_parent" >
+			     
+			    <ImageView
+			        android:id="@+id/bottomBarButtonImage2"
+			        android:contentDescription="@string/empty_description"
+			        android:layout_width="fill_parent"
+			        android:layout_height="fill_parent"
+			        android:src="@drawable/bottom_button2" />
+	
+			     <Button
+	            	android:id="@+id/bottomBarButton2"
+			        android:layout_width="0dp"
+			        android:layout_height="0dp"
+					android:layout_alignLeft="@+id/bottomBarButtonImage2"
+					android:layout_alignRight="@+id/bottomBarButtonImage2"
+					android:layout_alignTop="@+id/bottomBarButtonImage2"
+					android:layout_alignBottom="@+id/bottomBarButtonImage2"
+					android:onClick="anyButtonClicked"
+		            android:background="#00000000"  />
+			     
+			 </RelativeLayout>
+			 
+	        <RelativeLayout
+	            android:id="@+id/bottomBarItemLayout3"
+	            android:layout_weight="1"
+	            android:layout_width="0dp"
+	            android:layout_height="wrap_content" >
+			     
+			    <ImageView
+			        android:id="@+id/bottomBarButtonImage3"
+			        android:contentDescription="@string/empty_description"
+			        android:layout_width="fill_parent"
+			        android:layout_height="fill_parent"
+			        android:src="@drawable/bottom_button3" />
+	
+			     <Button
+	            	android:id="@+id/bottomBarButton3"
+			        android:layout_width="0dp"
+			        android:layout_height="0dp"
+					android:layout_alignLeft="@+id/bottomBarButtonImage3"
+					android:layout_alignRight="@+id/bottomBarButtonImage3"
+					android:layout_alignTop="@+id/bottomBarButtonImage3"
+					android:layout_alignBottom="@+id/bottomBarButtonImage3"
+					android:onClick="anyButtonClicked"
+		            android:background="#00000000"  />
+	
+			 </RelativeLayout>
+			 
+	        <RelativeLayout
+	            android:id="@+id/bottomBarItemLayout4"
+	            android:layout_weight="1"
+	            android:layout_width="0dp"
+	            android:layout_height="fill_parent" >
+			     
+			    <ImageView
+			        android:id="@+id/bottomBarButtonImage4"
+			        android:contentDescription="@string/empty_description"
+			        android:layout_width="fill_parent"
+			        android:layout_height="fill_parent"
+			        android:src="@drawable/bottom_button4" />
+	
+			     <Button
+	            	android:id="@+id/bottomBarButton4"
+			        android:layout_width="0dp"
+			        android:layout_height="0dp"
+					android:layout_alignLeft="@+id/bottomBarButtonImage4"
+					android:layout_alignRight="@+id/bottomBarButtonImage4"
+					android:layout_alignTop="@+id/bottomBarButtonImage4"
+					android:layout_alignBottom="@+id/bottomBarButtonImage4"
+					android:onClick="anyButtonClicked"
+		            android:background="#00000000"  />
+	
+			 </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:background="@color/common_border_color"
-            android:text="@string/bottom_button" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:background="@color/common_border_color"
-            android:text="@string/bottom_button" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:background="@color/common_border_color"
-            android:text="@string/bottom_button" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:background="@color/common_border_color"
-            android:text="@string/bottom_button" />
+	        <RelativeLayout
+	            android:id="@+id/bottomBarItemLayout5"
+	            android:layout_weight="1"
+	            android:layout_width="0dp"
+	            android:layout_height="fill_parent" >
+			     
+			    <ImageView
+			        android:id="@+id/bottomBarButtonImage5"
+			        android:contentDescription="@string/empty_description"
+			        android:layout_width="fill_parent"
+			        android:layout_height="fill_parent"
+			        android:src="@drawable/bottom_button5" />
+	
+			     <Button
+	            	android:id="@+id/bottomBarButton5"
+			        android:layout_width="0dp"
+			        android:layout_height="0dp"
+					android:layout_alignLeft="@+id/bottomBarButtonImage5"
+					android:layout_alignRight="@+id/bottomBarButtonImage5"
+					android:layout_alignTop="@+id/bottomBarButtonImage5"
+					android:layout_alignBottom="@+id/bottomBarButtonImage5"
+					android:onClick="anyButtonClicked"
+		            android:background="#00000000"  />
+	
+			 </RelativeLayout>
+			 
     </LinearLayout>
 
 </RelativeLayout>
