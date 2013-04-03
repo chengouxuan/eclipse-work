@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
+    
+    
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/addressBarLayout"
         android:layout_gravity="top"
         android:layout_width="match_parent"
         android:layout_height="44dp"
@@ -12,20 +14,21 @@
         android:paddingBottom="@dimen/common_padding"
         android:paddingLeft="@dimen/common_padding"
         android:paddingRight="@dimen/common_padding"
-        android:paddingTop="@dimen/common_padding" >
-
-    </LinearLayout>
+        android:paddingTop="@dimen/common_padding"
+        android:layout_alignParentTop="true" >
+    </RelativeLayout>
 
     <ScrollView
-        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="0dp"
         android:background="@color/common_border_color"
+        android:fillViewport="@bool/scroll_view_fill_view_port"
         android:paddingBottom="@dimen/common_padding"
         android:paddingLeft="@dimen/common_padding"
         android:paddingRight="@dimen/common_padding"
-        android:paddingTop="@dimen/common_padding" >
-
+        android:paddingTop="@dimen/common_padding"
+        android:layout_below="@+id/addressBarLayout"
+        android:layout_above="@+id/bottomBarLayout" >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -151,11 +154,14 @@
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/bottomBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bottom_bar_background_color"
         android:gravity="bottom"
-        android:orientation="horizontal" >
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -188,4 +194,4 @@
             android:text="@string/bottom_button" />
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
