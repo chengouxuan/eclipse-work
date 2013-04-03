@@ -3,5 +3,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="common_padding">5dp</dimen>
+    <color name="common_border_color">#33333333</color>
+    <color name="address_bar_background_color">#33ff0000</color>
+    <color name="bottom_bar_background_color">#3300ff00</color>
+    <color name="star_button_background_color">#330000ff</color>
 
 </resources>
