@@ -13,5 +13,6 @@
     <string name="button">common_button_string</string>
     <string name="common_button_string">button</string>
     <string name="type_in_address_hint">type in address</string>
+    <string name="search_hint">search</string>
 
 </resources>
