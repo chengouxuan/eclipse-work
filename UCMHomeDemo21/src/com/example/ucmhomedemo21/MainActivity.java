@@ -6,16 +6,24 @@ import android.view.Menu;
 
 
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.app.AlertDialog;
 
 
 public class MainActivity extends Activity {
 
+	private static String strings[] = {"1", "2", "3", "abcdef ghijklmn", "5", "6"};
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.activity_start_screen);
 		setContentView(R.layout.home);
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.navigation_list_view_item, strings);
+		ListView listView = (ListView)findViewById(R.id.listView1);
+		listView.setAdapter(adapter);
 	}
 
 	@Override

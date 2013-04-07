@@ -43,29 +43,30 @@ public final class R {
         public static final int url_bar_icon2=0x7f020009;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0019;
+        public static final int action_settings=0x7f0a001a;
         public static final int addressBarEditText=0x7f0a0005;
         public static final int addressBarLayout=0x7f0a0000;
         public static final int addressBarStarButton=0x7f0a0001;
-        public static final int bottomBarButton1=0x7f0a000c;
-        public static final int bottomBarButton2=0x7f0a000f;
-        public static final int bottomBarButton3=0x7f0a0012;
-        public static final int bottomBarButton4=0x7f0a0015;
-        public static final int bottomBarButton5=0x7f0a0018;
-        public static final int bottomBarButtonImage1=0x7f0a000b;
-        public static final int bottomBarButtonImage2=0x7f0a000e;
-        public static final int bottomBarButtonImage3=0x7f0a0011;
-        public static final int bottomBarButtonImage4=0x7f0a0014;
-        public static final int bottomBarButtonImage5=0x7f0a0017;
-        public static final int bottomBarItemLayout1=0x7f0a000a;
-        public static final int bottomBarItemLayout2=0x7f0a000d;
-        public static final int bottomBarItemLayout3=0x7f0a0010;
-        public static final int bottomBarItemLayout4=0x7f0a0013;
-        public static final int bottomBarItemLayout5=0x7f0a0016;
+        public static final int bottomBarButton1=0x7f0a000d;
+        public static final int bottomBarButton2=0x7f0a0010;
+        public static final int bottomBarButton3=0x7f0a0013;
+        public static final int bottomBarButton4=0x7f0a0016;
+        public static final int bottomBarButton5=0x7f0a0019;
+        public static final int bottomBarButtonImage1=0x7f0a000c;
+        public static final int bottomBarButtonImage2=0x7f0a000f;
+        public static final int bottomBarButtonImage3=0x7f0a0012;
+        public static final int bottomBarButtonImage4=0x7f0a0015;
+        public static final int bottomBarButtonImage5=0x7f0a0018;
+        public static final int bottomBarItemLayout1=0x7f0a000b;
+        public static final int bottomBarItemLayout2=0x7f0a000e;
+        public static final int bottomBarItemLayout3=0x7f0a0011;
+        public static final int bottomBarItemLayout4=0x7f0a0014;
+        public static final int bottomBarItemLayout5=0x7f0a0017;
         public static final int bottomBarLayout=0x7f0a0009;
         public static final int button1=0x7f0a0003;
         public static final int button2=0x7f0a0008;
         public static final int globImage=0x7f0a0004;
+        public static final int listView1=0x7f0a000a;
         public static final int quickButton=0x7f0a0006;
         public static final int quickButtonOuterLayout=0x7f0a0007;
         public static final int starButton=0x7f0a0002;
@@ -73,6 +74,7 @@ public final class R {
     public static final class layout {
         public static final int activity_start_screen=0x7f030000;
         public static final int home=0x7f030001;
+        public static final int navigation_list_view_item=0x7f030002;
     }
     public static final class menu {
         public static final int main=0x7f090000;
