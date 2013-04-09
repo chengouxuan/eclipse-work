@@ -87,4 +87,15 @@ public class GridViewDataAdapter extends BaseAdapter {
 	public void setNumColumns(int columns) {
 		this.numColumns = columns;
 	}
+	
+	public int getNumRows() {
+		
+		int columns = this.getNumColumns();
+		
+		if (columns != 0) {
+			return (this.getCount() + columns - 1) / columns;
+		} else {
+			return 0;
+		}
+	}
 }

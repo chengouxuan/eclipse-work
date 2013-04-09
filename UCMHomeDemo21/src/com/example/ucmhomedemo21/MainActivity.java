@@ -46,19 +46,29 @@ public class MainActivity extends Activity {
 		
 		gridView.setAdapter(gridViewDataAdapter);
 		
+		GridViewGridBackground gridBackground = (GridViewGridBackground) findViewById(R.id.gridBackground);
+		
 		if (isLandscape) {
 
 			listView.setScrollable(true);
+			
 			gridView.setScrollable(true);
 			gridView.setNumColumns(2);
 			gridViewDataAdapter.setNumColumns(2);
 			
+			gridBackground.setColumns(2);
+			gridBackground.setRows(gridViewDataAdapter.getNumRows());
+			
 		} else {
 			
 			listView.setScrollable(false);
+			
 			gridView.setScrollable(false);
 			gridView.setNumColumns(3);
 			gridViewDataAdapter.setNumColumns(3);
+
+			gridBackground.setColumns(3);
+			gridBackground.setRows(gridViewDataAdapter.getNumRows());
 		}
 		
 		this.setupDrawables();
@@ -73,10 +83,10 @@ public class MainActivity extends Activity {
 
 	public void anyButtonClicked(View senderView) {
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(senderView.toString());
-		AlertDialog dialog = builder.create();
-		dialog.show();
+//		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//		builder.setMessage(senderView.toString());
+//		AlertDialog dialog = builder.create();
+//		dialog.show();
 	}
 
 	private Drawable clipIconAtIndex(int resourceId, int index, int totalIcons) {
