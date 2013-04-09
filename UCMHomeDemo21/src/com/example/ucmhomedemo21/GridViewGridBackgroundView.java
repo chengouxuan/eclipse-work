@@ -7,15 +7,18 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.TextView;
 
-public class GridViewGridBackground extends View {
+public class GridViewGridBackgroundView extends View {
 
 	private int columns;
 	private int rows;
 	
 	private Paint paint;
 	private int lineMargin;
+	
+	private GridViewInfo gridViewInfo;
 	
 	private void setupPaint() {
 		
@@ -32,15 +35,21 @@ public class GridViewGridBackground extends View {
 		this.setRows(0);
 		this.setColumns(0);
 		this.setupPaint();
-		this.lineMargin = 10;
+		this.lineMargin = 15;
+		this.setGridViewInfo(null);
+	}
+	
+	public GridViewGridBackgroundView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		this.setupInstanceVariables();
 	}
 
-	public GridViewGridBackground(Context context, AttributeSet attr) {
+	public GridViewGridBackgroundView(Context context, AttributeSet attr) {
 		super(context, attr);
 		this.setupInstanceVariables();
 	}
 	
-	public GridViewGridBackground(Context context) {
+	public GridViewGridBackgroundView(Context context) {
 		super(context);
 		this.setupInstanceVariables();
 	}
@@ -50,22 +59,12 @@ public class GridViewGridBackground extends View {
 	
 		 super.onDraw(canvas);
 	
-//		 String msg = String.format(
-//		
-//			 "measured (width, height) = (%d, %d)\n" +
-//			 "(width, height) = (%d, %d)\n",
-//			
-//			 this.getMeasuredWidth(), this.getMeasuredHeight(),
-//			 this.getWidth(), this.getHeight()
-//		
-//		 );
-//		
-//		 Log.i("xxx", msg);
-	 
-		 
-//		 canvas.drawLine(0, 0, this.getWidth(), this.getHeight(), this.paint);
-
-		 double cellWidth = 1.0 * this.getWidth() / this.getColumns();
+		 double cellWidth = 0;
+		 if (gridViewInfo == null && this.columns != 0) {
+			 cellWidth = 1.0 * this.getMeasuredWidth() / this.columns;
+		 } else if (gridViewInfo != null){
+			 cellWidth = this.gridViewInfo.getCellWidth(0, 0);
+		 }
 		 
 		 int lineMargin = this.lineMargin;
 		 
@@ -74,7 +73,12 @@ public class GridViewGridBackground extends View {
 			 canvas.drawLine(x, 0 + lineMargin, x, this.getHeight() - lineMargin, this.paint);
 		 }
 		 
-		 double cellHeight = 1.0 * this.getHeight() / rows;
+		 double cellHeight = 0;
+		 if (gridViewInfo == null && this.rows != 0) {
+			 cellHeight = 1.0 * this.getMeasuredHeight() / this.rows;
+		 } else if (gridViewInfo != null) {
+			 cellHeight = this.gridViewInfo.getCellHeight(0, 0);
+		 }
 		 
 		 for (int i = 1; i < this.getRows(); ++i) {
 			 int y = (int)(i * cellHeight + 0.5);
@@ -96,5 +100,13 @@ public class GridViewGridBackground extends View {
 
 	public void setColumns(int columns) {
 		this.columns = columns;
+	}
+
+	public GridViewInfo getGridViewInfo() {
+		return gridViewInfo;
+	}
+
+	public void setGridViewInfo(GridViewInfo gridViewInfo) {
+		this.gridViewInfo = gridViewInfo;
 	}
 }

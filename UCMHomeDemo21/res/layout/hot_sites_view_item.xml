@@ -4,6 +4,8 @@
     android:layout_height="fill_parent" >
     
     
+    
+    
     <ImageView
         android:id="@+id/siteIcon"
         android:layout_width="27dp"

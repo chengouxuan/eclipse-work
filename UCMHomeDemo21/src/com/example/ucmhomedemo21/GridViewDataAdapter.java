@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +13,22 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class GridViewDataAdapter extends BaseAdapter {
+public class GridViewDataAdapter
+
+extends BaseAdapter
+
+implements GridViewInfo {
 	
 
+	View commonItemView;
+	
 	private Context context;
 	private int numColumns;
 	
 	public GridViewDataAdapter(Context context) {
 		this.setContext(context);
 		this.setNumColumns(0);
+		this.commonItemView = null;
 	}
 
 	protected Context getContext() {
@@ -76,6 +84,8 @@ public class GridViewDataAdapter extends BaseAdapter {
 			
 			view = xmlView;
 //		}
+			
+		this.commonItemView = view;
 		
 		return view;
 	}
@@ -94,6 +104,30 @@ public class GridViewDataAdapter extends BaseAdapter {
 		
 		if (columns != 0) {
 			return (this.getCount() + columns - 1) / columns;
+		} else {
+			return 0;
+		}
+	}
+	
+	
+	@Override
+	public int getCellHeight(int row, int column) {
+		
+		View view = this.commonItemView;
+		
+		if (view != null) {
+			return view.getMeasuredHeight();
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int getCellWidth(int row, int column) {
+		View view = this.commonItemView;
+		
+		if (view != null) {
+			return view.getMeasuredWidth();
 		} else {
 			return 0;
 		}

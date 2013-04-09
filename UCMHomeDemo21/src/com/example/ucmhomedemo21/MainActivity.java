@@ -46,7 +46,8 @@ public class MainActivity extends Activity {
 		
 		gridView.setAdapter(gridViewDataAdapter);
 		
-		GridViewGridBackground gridBackground = (GridViewGridBackground) findViewById(R.id.gridBackground);
+		GridViewGridBackgroundView gridBackgroundView = (GridViewGridBackgroundView) findViewById(R.id.gridBackground);
+		gridBackgroundView.setGridViewInfo(gridViewDataAdapter);
 		
 		if (isLandscape) {
 
@@ -56,8 +57,8 @@ public class MainActivity extends Activity {
 			gridView.setNumColumns(2);
 			gridViewDataAdapter.setNumColumns(2);
 			
-			gridBackground.setColumns(2);
-			gridBackground.setRows(gridViewDataAdapter.getNumRows());
+			gridBackgroundView.setColumns(2);
+			gridBackgroundView.setRows(gridViewDataAdapter.getNumRows());
 			
 		} else {
 			
@@ -67,8 +68,8 @@ public class MainActivity extends Activity {
 			gridView.setNumColumns(3);
 			gridViewDataAdapter.setNumColumns(3);
 
-			gridBackground.setColumns(3);
-			gridBackground.setRows(gridViewDataAdapter.getNumRows());
+			gridBackgroundView.setColumns(3);
+			gridBackgroundView.setRows(gridViewDataAdapter.getNumRows());
 		}
 		
 		this.setupDrawables();
