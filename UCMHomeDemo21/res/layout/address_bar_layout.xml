@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+    
+        
+		    <ImageView
+		        android:id="@+id/addressBarBackground"
+		        android:layout_height="44dp"
+		        android:layout_width="0dp"
+		        android:layout_alignLeft="@+id/addressBarStarButton"
+		        android:layout_alignRight="@+id/addressBarEditTextSearch"
+		        android:layout_alignTop="@+id/addressBarStarButton"
+		        android:layout_alignBottom="@+id/addressBarStarButton"
+		        android:contentDescription="@string/empty_description"
+		        android:background="@drawable/add_url_bg" />
+	
+	        <RelativeLayout
+	            android:id="@+id/addressBarStarButton"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" >
+	            
+			    <ImageView
+			        android:id="@+id/starButton"
+			        android:contentDescription="@string/empty_description"
+			        android:layout_width="35dp"
+			        android:layout_height="44dp"
+			        android:background="@drawable/add_bookmark_button" />
+	
+			     <Button
+			        android:id="@+id/button1"
+			        android:layout_width="0dp"
+			        android:layout_height="0dp"
+					android:layout_alignLeft="@+id/starButton"
+					android:layout_alignRight="@+id/starButton"
+					android:layout_alignTop="@+id/starButton"
+					android:layout_alignBottom="@+id/starButton"
+					android:onClick="anyButtonClicked"
+				    android:background="#00000000"  />
+	
+	        </RelativeLayout>
+	        
+	        
+		    <ImageView
+		        android:id="@+id/addressBarLine0"
+		        android:layout_toRightOf="@+id/addressBarStarButton"
+		        android:contentDescription="@string/empty_description"
+		        android:layout_width="wrap_content"
+		        android:layout_height="44dp"
+		        android:layout_centerVertical="true"
+		        android:background="@drawable/add_line_0" />
+		    
+		    <EditText
+		        android:id="@+id/addressBarEditText"
+		        android:layout_width="145dp"
+		        android:layout_height="44dp"
+		        android:paddingLeft="@dimen/common_padding"
+		        android:layout_toRightOf="@id/addressBarLine0"
+		        android:background="#00000000"
+		        android:hint="@string/type_in_address_hint" />
+		       
+		    <ImageView
+		        android:id="@+id/addressBarLine1"
+		        android:layout_toRightOf="@+id/addressBarEditText"
+		        android:contentDescription="@string/empty_description"
+		        android:layout_width="wrap_content"
+		        android:layout_height="44dp"
+		        android:background="@drawable/add_line_1" />
+		    
+		    <ImageView
+		        android:id="@+id/addressBarSearchIcon"
+		        android:layout_toRightOf="@+id/addressBarLine1"
+		        android:contentDescription="@string/empty_description"
+		        android:layout_width="15dp"
+		        android:layout_height="44dp"
+		        android:layout_marginLeft="5dp"
+		        android:background="@drawable/add_serch_icon" />
+		    
+		    <EditText 
+		        android:id="@+id/addressBarEditTextSearch"
+		        android:layout_width="68dp"
+		        android:layout_height="44dp"
+		        android:paddingLeft="@dimen/common_padding"
+		        android:hint="@string/search_hint"
+		        android:background="#00000000"
+		        android:layout_toRightOf="@+id/addressBarSearchIcon" />   
+		        
+	    
+
+</RelativeLayout>

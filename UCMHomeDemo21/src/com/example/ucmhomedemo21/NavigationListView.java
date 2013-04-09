@@ -2,20 +2,24 @@ package com.example.ucmhomedemo21;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.GridView;
+import android.view.View.MeasureSpec;
+import android.widget.ListView;
 
-public class HotSitesGridView extends GridView {
+public class NavigationListView extends ListView {
 
-	public HotSitesGridView(Context context) {
+	public NavigationListView(Context context) {
 		super(context);
+		// TODO Auto-generated constructor stub
 	}
 
-	public HotSitesGridView(Context context, AttributeSet attrs) {
+	public NavigationListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		// TODO Auto-generated constructor stub
 	}
 
-	public HotSitesGridView(Context context, AttributeSet attrs, int defStyle) {
+	public NavigationListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:paddingLeft="@dimen/common_padding"
+    android:paddingRight="@dimen/common_padding" >
     
+    
+    <ImageView
+        android:id="@+id/siteIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="@string/empty_description"
+         />
+    
+    <TextView
+        android:id="@+id/siteDescriptionString"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/common_padding"
+        android:layout_toRightOf="@+id/siteIcon"
+        android:gravity="center_vertical|center_horizontal" />
 
-</TextView>
+</RelativeLayout>

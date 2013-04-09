@@ -1,7 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-    
+    android:layout_height="40dp"
+    android:paddingLeft="@dimen/common_padding"
+    android:paddingRight="@dimen/common_padding"
 
-</TextView>
+>
+    
+    
+    <ImageView
+        android:id="@+id/navigationIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/empty_description"
+         />
+    
+    <TextView
+        android:id="@+id/navigationString"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@+id/navigationIcon"
+        android:layout_centerVertical="true"
+        android:text="this is placeholder"
+        android:layout_marginLeft="2dp"
+         />
+    
+    <TextView
+        android:id="@+id/navigationDetailString"
+        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/navigationAccessoryIcon"
+        android:text="this is placeholder"
+         />
+
+    <ImageView
+        android:id="@+id/navigationAccessoryIcon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/empty_description"
+        android:background="@drawable/quick_button"
+         />
+    
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignLeft="@+id/navigationAccessoryIcon"
+        android:layout_alignRight="@+id/navigationAccessoryIcon"
+        android:layout_alignTop="@+id/navigationAccessoryIcon"
+        android:layout_alignBottom="@+id/navigationAccessoryIcon"
+        android:onClick="anyButtonClicked"
+        android:background="#00000000"
+         />
+    
+</RelativeLayout>

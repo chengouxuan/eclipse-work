@@ -2,9 +2,14 @@ package com.example.ucmhomedemo21;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GridViewDataAdapter extends BaseAdapter {
@@ -46,11 +51,21 @@ public class GridViewDataAdapter extends BaseAdapter {
 		View view = convertView;
 		
 //		if (convertView == null) {
+
+			LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			
-			TextView textView = new TextView(getContext());
+			View xmlView = inflater.inflate(R.layout.hot_sites_view_item, null);
+		
+			
+			TextView textView = (TextView) xmlView.findViewById(R.id.siteDescriptionString);
 			textView.setText(DataSource.hotSitesStrings[position]);
+
+			ImageView icon = (ImageView)xmlView.findViewById(R.id.siteIcon);
+			Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.sina);
+			BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
+			icon.setImageDrawable(bitmapDrawable);
 			
-			view = textView;
+			view = xmlView;
 //		}
 		
 		return view;

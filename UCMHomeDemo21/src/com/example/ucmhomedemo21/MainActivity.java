@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.view.Menu;
 
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 //import android.widget.GridView;
 import android.widget.ListView;
@@ -23,15 +23,19 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 //		setContentView(R.layout.activity_start_screen);
-		setContentView(R.layout.home);
+//		setContentView(R.layout.home_layout_portrait);
+		setContentView(R.layout.home_layout_landscape);
 
-		ArrayAdapter<String> adapter = new ListViewDataAdapter<String>(this,
-				R.layout.navigation_list_view_item,
-				DataSource.navigationStrings);
+		ListViewDataAdapter adapter = new ListViewDataAdapter(this);
 		ListView listView = (ListView) findViewById(R.id.listView1);
-
 		
 		listView.setAdapter(adapter);
+		
+		
+		GridViewDataAdapter gridViewDataAdapter = new GridViewDataAdapter(this);
+		GridView gridView = (GridView) findViewById(R.id.gridView1);
+		
+		gridView.setAdapter(gridViewDataAdapter);
 		
 		this.setupDrawables();
 	}
@@ -67,31 +71,31 @@ public class MainActivity extends Activity {
 		
 		{
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 2, 11);
-			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarButtonImage1);
+			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarItemLayout1).findViewById(R.id.bottomBarButtonImage);
 			imageView.setImageDrawable(drawable);
 		}
 		
 		{
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 3, 11);
-			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarButtonImage2);
+			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarItemLayout2).findViewById(R.id.bottomBarButtonImage);
 			imageView.setImageDrawable(drawable);
 		}
 		
 		{
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 4, 11);
-			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarButtonImage3);
+			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarItemLayout3).findViewById(R.id.bottomBarButtonImage);
 			imageView.setImageDrawable(drawable);
 		}
 	
 		{
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 5, 11);
-			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarButtonImage4);
+			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarItemLayout4).findViewById(R.id.bottomBarButtonImage);
 			imageView.setImageDrawable(drawable);
 		}
 		
 		{
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 6, 11);
-			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarButtonImage5);
+			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButtonImage);
 			imageView.setImageDrawable(drawable);
 		}
 	}
