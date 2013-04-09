@@ -3,20 +3,22 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/default_wallpaper"
-    android:gravity="top"
-    android:paddingBottom="@dimen/common_padding"
-    android:paddingLeft="@dimen/common_padding"
-    android:paddingRight="@dimen/common_padding"
-    android:paddingTop="@dimen/common_padding" >
+    android:gravity="top" >
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:paddingLeft="@dimen/common_padding" >
-        
+    
+
+	        <ImageView
+	            android:id="@+id/imageView1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignLeft="@+id/topBarLayout"
+	            android:layout_alignRight="@+id/topBarLayout"
+	            android:layout_alignBottom="@+id/topBarLayout"
+	            android:layout_alignTop="@+id/topBarLayout"
+	            android:background="@drawable/topbar_bg_landscape" />
+	        
         <LinearLayout
-	        android:id="@+id/topBarLayout"
+            android:id="@+id/topBarLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -54,15 +56,18 @@
 	            />
         
         </LinearLayout>
-
+        
+        
+        
 
         <LinearLayout
             android:orientation="horizontal"
-	        android:layout_below="@+id/topBarLayout"
 	        android:layout_width="fill_parent"
 	        android:layout_height="fill_parent"
 	        android:layout_alignParentBottom="true"
+	   		android:layout_below="@+id/topBarLayout"
             >
+        
 	        <include 
 	            layout="@layout/hot_sites_layout"
 	            android:id="@+id/gridView1"
@@ -81,6 +86,6 @@
 	            />
         </LinearLayout>
 
-    </RelativeLayout>
+
 
 </RelativeLayout>

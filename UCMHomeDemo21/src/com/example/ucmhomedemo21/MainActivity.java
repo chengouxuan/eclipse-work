@@ -10,6 +10,7 @@ import android.widget.ImageView;
 //import android.widget.GridView;
 import android.widget.ListView;
 import android.app.AlertDialog;
+import android.content.res.Configuration;
 //import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,22 +21,45 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
-
-//		setContentView(R.layout.activity_start_screen);
-//		setContentView(R.layout.home_layout_portrait);
-		setContentView(R.layout.home_layout_landscape);
+		
+		boolean isLandscape = (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE);
+			
+		if (isLandscape) {
+			
+			setContentView(R.layout.home_layout_landscape);
+			
+		} else {
+			
+			setContentView(R.layout.home_layout_portrait);
+		}
 
 		ListViewDataAdapter adapter = new ListViewDataAdapter(this);
-		ListView listView = (ListView) findViewById(R.id.listView1);
+		NavigationListView listView = (NavigationListView) findViewById(R.id.listView1);
 		
 		listView.setAdapter(adapter);
 		
 		
 		GridViewDataAdapter gridViewDataAdapter = new GridViewDataAdapter(this);
-		GridView gridView = (GridView) findViewById(R.id.gridView1);
+		HotSitesGridView gridView = (HotSitesGridView) findViewById(R.id.gridView1).findViewById(R.id.innerGridView);
 		
 		gridView.setAdapter(gridViewDataAdapter);
+		
+		if (isLandscape) {
+
+			listView.setScrollable(true);
+			gridView.setScrollable(true);
+			gridView.setNumColumns(2);
+			gridViewDataAdapter.setNumColumns(2);
+			
+		} else {
+			
+			listView.setScrollable(false);
+			gridView.setScrollable(false);
+			gridView.setNumColumns(3);
+			gridViewDataAdapter.setNumColumns(3);
+		}
 		
 		this.setupDrawables();
 	}

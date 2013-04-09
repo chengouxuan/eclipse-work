@@ -12,7 +12,7 @@
     <string name="bottom_button">button</string>
     <string name="button">common_button_string</string>
     <string name="common_button_string">button</string>
-    <string name="type_in_address_hint">type in address</string>
-    <string name="search_hint">search</string>
+    <string name="type_in_address_hint">输入网址</string>
+    <string name="search_hint">搜索</string>
 
 </resources>

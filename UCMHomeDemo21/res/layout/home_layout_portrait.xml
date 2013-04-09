@@ -11,11 +11,7 @@
         android:id="@+id/topBarLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-	    android:paddingBottom="@dimen/common_padding"
-	    android:paddingLeft="@dimen/common_padding"
-	    android:paddingRight="@dimen/common_padding"
-	    android:paddingTop="@dimen/common_padding" >
+        android:layout_alignParentTop="true" >
         
 	    
         <include
@@ -35,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottomBarLayout"
         android:layout_below="@+id/topBarLayout"
+        android:fadingEdge="none"
         android:scrollbars="none" >
 
         <LinearLayout

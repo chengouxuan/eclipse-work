@@ -4,8 +4,14 @@
     android:layout_height="40dp"
     android:paddingLeft="@dimen/common_padding"
     android:paddingRight="@dimen/common_padding"
+    android:background="#00000000"
 
 >
+    <TextView
+        android:layout_height="36dp"
+        android:layout_width="wrap_content"
+        android:text="   "
+         />
     
     
     <ImageView
@@ -28,12 +34,15 @@
     
     <TextView
         android:id="@+id/navigationDetailString"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_alignParentTop="true"
+        android:textColor="#77777777"
+        android:textSize="13sp"
+        android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/navigationAccessoryIcon"
         android:text="this is placeholder"
          />
+    
 
     <ImageView
         android:id="@+id/navigationAccessoryIcon"

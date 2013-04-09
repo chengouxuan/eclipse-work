@@ -16,9 +16,11 @@ public class GridViewDataAdapter extends BaseAdapter {
 	
 
 	private Context context;
+	private int numColumns;
 	
 	public GridViewDataAdapter(Context context) {
 		this.setContext(context);
+		this.setNumColumns(0);
 	}
 
 	protected Context getContext() {
@@ -37,7 +39,14 @@ public class GridViewDataAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		return DataSource.hotSitesStrings.length;
+		
+		int columns = this.getNumColumns();
+		
+		if (columns == 0) {
+			return DataSource.hotSitesStrings.length;
+		}
+		
+		return DataSource.hotSitesStrings.length / columns * columns;
 	}
 	
 	@Override
@@ -69,5 +78,13 @@ public class GridViewDataAdapter extends BaseAdapter {
 //		}
 		
 		return view;
+	}
+
+	public int getNumColumns() {
+		return numColumns;
+	}
+
+	public void setNumColumns(int columns) {
+		this.numColumns = columns;
 	}
 }

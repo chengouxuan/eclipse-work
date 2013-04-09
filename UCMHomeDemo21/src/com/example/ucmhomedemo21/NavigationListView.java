@@ -7,26 +7,42 @@ import android.widget.ListView;
 
 public class NavigationListView extends ListView {
 
+	private boolean scrollable;
+	
 	public NavigationListView(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
+		this.setScrollable(false);
 	}
 
 	public NavigationListView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
+		this.setScrollable(false);
 	}
 
 	public NavigationListView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		// TODO Auto-generated constructor stub
+		this.setScrollable(false);
 	}
 
 	@Override
 	public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
-//		int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
-//		super.onMeasure(widthMeasureSpec, expandSpec);
-		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		if (! this.isScrollable()) {
+			
+			int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
+			super.onMeasure(widthMeasureSpec, expandSpec);
+			
+		} else {
+			
+			super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+		}
+	}
+
+	public boolean isScrollable() {
+		return scrollable;
+	}
+
+	public void setScrollable(boolean scrollable) {
+		this.scrollable = scrollable;
 	}
 }

@@ -3,19 +3,12 @@
     
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginBottom="@dimen/common_padding"
-                android:layout_marginLeft="@dimen/common_padding"
-                android:layout_marginRight="@dimen/common_padding"
-                android:layout_marginTop="@dimen/common_padding"
                 android:background="@drawable/add_url_bg"
                 android:divider="@color/common_gray_color"
                 android:dividerHeight="@dimen/common_divider_height"
                 android:fadingEdge="none"
-                android:paddingBottom="@dimen/common_padding"
-                android:paddingLeft="@dimen/common_padding"
-                android:paddingRight="@dimen/common_padding"
-                android:paddingTop="@dimen/common_padding"
                 android:scrollbars="none"
+                android:cacheColorHint="#00000000"
                 
                 
                 

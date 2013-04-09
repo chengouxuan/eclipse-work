@@ -22,8 +22,9 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050002;
-        public static final int common_divider_height=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f050003;
+        public static final int common_divider_height=0x7f050002;
+        public static final int common_ignore_padding=0x7f050001;
         /**  Default screen margins, per the Android Design guidelines. 
          */
         public static final int common_padding=0x7f050000;
@@ -47,13 +48,14 @@ public final class R {
         public static final int start_screen_background=0x7f02000f;
         public static final int toolbar_1=0x7f020010;
         public static final int toolbar_fs=0x7f020011;
+        public static final int topbar_bg_landscape=0x7f020012;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0021;
+        public static final int action_settings=0x7f0a0023;
         public static final int addressBarBackground=0x7f0a0000;
         public static final int addressBarEditText=0x7f0a0006;
         public static final int addressBarEditTextSearch=0x7f0a0002;
-        public static final int addressBarLayout=0x7f0a0011;
+        public static final int addressBarLayout=0x7f0a0012;
         public static final int addressBarLine0=0x7f0a0005;
         public static final int addressBarLine1=0x7f0a0007;
         public static final int addressBarSearchIcon=0x7f0a0008;
@@ -65,24 +67,26 @@ public final class R {
         public static final int bottomBarItemLayout3=0x7f0a000d;
         public static final int bottomBarItemLayout4=0x7f0a000e;
         public static final int bottomBarItemLayout5=0x7f0a000f;
-        public static final int bottomBarLayout=0x7f0a0017;
+        public static final int bottomBarLayout=0x7f0a0018;
         public static final int button1=0x7f0a0004;
-        public static final int button2=0x7f0a0020;
-        public static final int gridView1=0x7f0a0013;
-        public static final int homeOuterLayout=0x7f0a0015;
-        public static final int listView1=0x7f0a0014;
-        public static final int navigationAccessoryIcon=0x7f0a001d;
-        public static final int navigationDetailString=0x7f0a001c;
-        public static final int navigationIcon=0x7f0a001a;
-        public static final int navigationString=0x7f0a001b;
-        public static final int quickButton=0x7f0a001f;
-        public static final int quickButtonBg=0x7f0a001e;
-        public static final int quickButtonOuterLayout=0x7f0a0012;
-        public static final int scrollView1=0x7f0a0016;
-        public static final int siteDescriptionString=0x7f0a0019;
-        public static final int siteIcon=0x7f0a0018;
+        public static final int button2=0x7f0a0022;
+        public static final int gridView1=0x7f0a0014;
+        public static final int homeOuterLayout=0x7f0a0016;
+        public static final int imageView1=0x7f0a0010;
+        public static final int innerGridView=0x7f0a0019;
+        public static final int listView1=0x7f0a0015;
+        public static final int navigationAccessoryIcon=0x7f0a001f;
+        public static final int navigationDetailString=0x7f0a001e;
+        public static final int navigationIcon=0x7f0a001c;
+        public static final int navigationString=0x7f0a001d;
+        public static final int quickButton=0x7f0a0021;
+        public static final int quickButtonBg=0x7f0a0020;
+        public static final int quickButtonOuterLayout=0x7f0a0013;
+        public static final int scrollView1=0x7f0a0017;
+        public static final int siteDescriptionString=0x7f0a001b;
+        public static final int siteIcon=0x7f0a001a;
         public static final int starButton=0x7f0a0003;
-        public static final int topBarLayout=0x7f0a0010;
+        public static final int topBarLayout=0x7f0a0011;
     }
     public static final class layout {
         public static final int activity_start_screen=0x7f030000;
