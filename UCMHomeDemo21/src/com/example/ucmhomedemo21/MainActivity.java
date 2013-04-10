@@ -227,11 +227,7 @@ public class MainActivity extends Activity {
 				
 			 if (isLandscape) {
 				 
-				 int offset = MainActivity.computeTopOnRoot((View) senderView.getParent())
-						 - MainActivity.computeTopOnRoot(listView) - listView.getPaddingTop();
-
-//				 this.handler.postDelayed(new RunnableListViewExecuteScroll(listView, 0, offset), 100);
-				 listView.scrollTo(0, offset);
+				 listView.setSelectedGroup(position);
 				 
 			 } else {
 
