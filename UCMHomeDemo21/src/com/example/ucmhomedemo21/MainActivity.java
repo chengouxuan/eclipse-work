@@ -31,6 +31,7 @@ public class MainActivity extends Activity {
 	private ExpandableListViewDataAdapter listViewAdapter;
 	
 	public MainActivity() {
+		this.listViewAdapter = null;
 		this.handler = null;
 	}
 
