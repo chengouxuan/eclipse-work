@@ -1,10 +1,13 @@
 package com.example.ucmhomedemo21;
 
+import java.nio.channels.Selector;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 //import android.widget.GridView;
@@ -60,6 +63,8 @@ public class MainActivity extends Activity {
 			gridBackgroundView.setColumns(2);
 			gridBackgroundView.setRows(gridViewDataAdapter.getNumRows());
 			
+			this.setupButtonSelectorsLandscape();
+			
 		} else {
 			
 			listView.setScrollable(false);
@@ -70,6 +75,8 @@ public class MainActivity extends Activity {
 
 			gridBackgroundView.setColumns(3);
 			gridBackgroundView.setRows(gridViewDataAdapter.getNumRows());
+			
+			this.setupButtonSelectorsPortrait();
 		}
 		
 		this.setupDrawables();
@@ -132,6 +139,52 @@ public class MainActivity extends Activity {
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 6, 11);
 			ImageView imageView = (ImageView) this.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButtonImage);
 			imageView.setImageDrawable(drawable);
+		}
+	}
+	
+	private void setupButtonSelectorsPortrait() {
+		{
+			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout1).findViewById(R.id.bottomBarButton);
+			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
+		}
+		{
+			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout2).findViewById(R.id.bottomBarButton);
+			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
+		}
+		{
+			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout3).findViewById(R.id.bottomBarButton);
+			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
+		}
+		{
+			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout4).findViewById(R.id.bottomBarButton);
+			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
+		}
+		{
+			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButton);
+			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
+		}
+	}
+	
+	private void setupButtonSelectorsLandscape() {
+		{
+			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout1).findViewById(R.id.bottomBarButton);
+			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
+		}
+		{
+			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout2).findViewById(R.id.bottomBarButton);
+			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
+		}
+		{
+			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout3).findViewById(R.id.bottomBarButton);
+			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
+		}
+		{
+			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout4).findViewById(R.id.bottomBarButton);
+			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
+		}
+		{
+			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButton);
+			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
 		}
 	}
 }

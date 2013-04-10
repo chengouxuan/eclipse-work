@@ -20,23 +20,12 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content" >
 	            
-			    <ImageView
-			        android:id="@+id/starButton"
-			        android:contentDescription="@string/empty_description"
-			        android:layout_width="35dp"
-			        android:layout_height="44dp"
-			        android:background="@drawable/add_bookmark_button" />
-	
 			     <Button
 			        android:id="@+id/button1"
-			        android:layout_width="0dp"
-			        android:layout_height="0dp"
-					android:layout_alignLeft="@+id/starButton"
-					android:layout_alignRight="@+id/starButton"
-					android:layout_alignTop="@+id/starButton"
-					android:layout_alignBottom="@+id/starButton"
+			        android:layout_width="37dp"
+			        android:layout_height="44dp"
 					android:onClick="anyButtonClicked"
-				    android:background="#00000000"  />
+				    android:background="@drawable/add_bookmark_button_selector"  />
 	
 	        </RelativeLayout>
 	        
@@ -52,7 +41,7 @@
 		    
 		    <EditText
 		        android:id="@+id/addressBarEditText"
-		        android:layout_width="155dp"
+		        android:layout_width="157dp"
 		        android:layout_height="44dp"
 		        android:paddingLeft="@dimen/common_padding"
 		        android:layout_toRightOf="@id/addressBarLine0"

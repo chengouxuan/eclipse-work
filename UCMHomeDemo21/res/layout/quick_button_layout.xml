@@ -8,21 +8,11 @@
             android:layout_toRightOf="@+id/addressBarEditTextSearch" >
 		     
 		    <ImageView
-		        android:id="@+id/quickButtonBg"
-		        android:contentDescription="@string/empty_description"
-		        android:layout_width="0dp"
-		        android:layout_height="dp"
-				android:layout_alignLeft="@+id/quickButton"
-				android:layout_alignRight="@+id/quickButton"
-				android:layout_alignTop="@+id/quickButton"
-				android:layout_alignBottom="@+id/quickButton"
-		        android:background="@drawable/add_url_bg" />
-		    <ImageView
 		        android:id="@+id/quickButton"
 		        android:contentDescription="@string/empty_description"
 		        android:layout_width="40dp"
 		        android:layout_height="44dp"
-		        android:background="@drawable/quick_button" />
+		        android:background="@drawable/add_url_bg" />
 
 		     <Button
             	android:id="@+id/button2"
@@ -33,6 +23,7 @@
 				android:layout_alignTop="@+id/quickButton"
 				android:layout_alignBottom="@+id/quickButton"
 				android:onClick="anyButtonClicked"
-	            android:background="#00000000"  />
-
+				android:background="@drawable/quick_button_selector" />
+		     
+		     
 </RelativeLayout>
