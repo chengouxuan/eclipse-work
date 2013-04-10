@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +21,8 @@ extends BaseAdapter
 implements GridViewInfo {
 	
 
-	View commonItemView;
+	private View commonItemView;
+	private GridView gridView;
 	
 	private Context context;
 	private int numColumns;
@@ -132,4 +134,49 @@ implements GridViewInfo {
 			return 0;
 		}
 	}
+
+	public GridView getGridView() {
+		return gridView;
+	}
+
+	public void setGridView(GridView gridView) {
+		this.gridView = gridView;
+	}
+
+	@Override
+	public int getPaddingTop() {
+		if (null != this.gridView) {
+			return gridView.getPaddingTop();
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int getPaddingRight() {
+		if (null != this.gridView) {
+			return gridView.getPaddingRight();
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int getPaddingBottom() {
+		if (null != this.gridView) {
+			return gridView.getPaddingBottom();
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int getPaddingLeft() {
+		if (null != this.gridView) {
+			return gridView.getPaddingLeft();
+		} else {
+			return 0;
+		}
+	}
+	
 }

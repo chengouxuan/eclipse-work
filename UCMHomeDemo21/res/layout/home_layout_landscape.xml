@@ -78,7 +78,7 @@
 	            />
 	        
 	        <include 
-	            layout="@layout/navigation_list_view_layout"
+	            layout="@layout/navigation_expandable_list_view_layout"
 	            android:id="@+id/listView1"
 	            android:layout_width="0dp"
 	            android:layout_weight="2"

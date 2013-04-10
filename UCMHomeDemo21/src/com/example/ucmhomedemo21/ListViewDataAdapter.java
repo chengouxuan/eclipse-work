@@ -43,7 +43,7 @@ public class ListViewDataAdapter extends BaseAdapter {
 //		if (convertView == null) {
 //			if (position != 0) {
 				
-				LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+				LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				
 				View xmlView = inflater.inflate(R.layout.navigation_list_view_item, null);
 				

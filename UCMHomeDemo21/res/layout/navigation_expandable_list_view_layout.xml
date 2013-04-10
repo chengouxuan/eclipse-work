@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.ucmhomedemo21.NavigationExpandableListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/add_url_bg"
+    android:cacheColorHint="#00000000"
+    android:divider="@color/common_gray_color"
+    android:dividerHeight="@dimen/common_divider_height"
+    android:fadingEdge="none"
+    android:groupIndicator="@color/no_color"
+    android:scrollbars="none" />
+
+    

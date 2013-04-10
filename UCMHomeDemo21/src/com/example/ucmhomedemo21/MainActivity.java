@@ -3,13 +3,17 @@ package com.example.ucmhomedemo21;
 import java.nio.channels.Selector;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
+import android.view.ViewParent;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 //import android.widget.GridView;
 import android.widget.ListView;
 import android.app.AlertDialog;
@@ -21,11 +25,23 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 public class MainActivity extends Activity {
+	
+	private Handler handler;
+	
+	private ExpandableListViewDataAdapter listViewAdapter;
+	
+	public MainActivity() {
+		this.handler = null;
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
+		
+		if (this.handler == null) {
+			this.handler = new Handler();
+		}
 		
 		boolean isLandscape = (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE);
 			
@@ -38,16 +54,19 @@ public class MainActivity extends Activity {
 			setContentView(R.layout.home_layout_portrait);
 		}
 
-		ListViewDataAdapter adapter = new ListViewDataAdapter(this);
-		NavigationListView listView = (NavigationListView) findViewById(R.id.listView1);
+		ExpandableListViewDataAdapter adapter = new ExpandableListViewDataAdapter(this);
+		NavigationExpandableListView listView = (NavigationExpandableListView) findViewById(R.id.listView1);
+		this.listViewAdapter = adapter;
 		
 		listView.setAdapter(adapter);
-		
+		adapter.setExpandableListView(listView);
+		listView.setListViewInfo(adapter);
 		
 		GridViewDataAdapter gridViewDataAdapter = new GridViewDataAdapter(this);
 		HotSitesGridView gridView = (HotSitesGridView) findViewById(R.id.gridView1).findViewById(R.id.innerGridView);
 		
 		gridView.setAdapter(gridViewDataAdapter);
+		gridViewDataAdapter.setGridView(gridView);
 		
 		GridViewGridBackgroundView gridBackgroundView = (GridViewGridBackgroundView) findViewById(R.id.gridBackground);
 		gridBackgroundView.setGridViewInfo(gridViewDataAdapter);
@@ -96,7 +115,7 @@ public class MainActivity extends Activity {
 //		AlertDialog dialog = builder.create();
 //		dialog.show();
 	}
-
+	
 	private Drawable clipIconAtIndex(int resourceId, int index, int totalIcons) {
 		
 		Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), resourceId);
@@ -186,5 +205,68 @@ public class MainActivity extends Activity {
 			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButton);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
 		}
+	}
+	
+	public void onExpandCollapseGroup(View senderView) {
+
+		NavigationExpandableListView listView = (NavigationExpandableListView) findViewById(R.id.listView1);
+		
+		int position = Integer.parseInt((String) senderView.getTag());
+		
+		 if (! listView.isGroupExpanded(position)) {
+
+			 for (int i = 0; i < listViewAdapter.getGroupCount(); ++i) {
+				 if (i != position) {
+					 listView.collapseGroup(i);
+				 } else {
+					 listView.expandGroup(position);
+				 }
+			 }
+			 
+			 boolean isLandscape = (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE);
+				
+			 if (isLandscape) {
+				 
+				 int offset = MainActivity.computeTopOnRoot((View) senderView.getParent())
+						 - MainActivity.computeTopOnRoot(listView) - listView.getPaddingTop();
+
+//				 this.handler.postDelayed(new RunnableListViewExecuteScroll(listView, 0, offset), 100);
+				 listView.scrollTo(0, offset);
+				 
+			 } else {
+
+				 ScrollView scrollView = (ScrollView) this.findViewById(R.id.scrollView1);
+				 int offset = MainActivity.computeTopOnRoot((View) senderView.getParent())
+						 - MainActivity.computeTopOnRoot(scrollView) - scrollView.getPaddingTop();
+				 
+				 this.handler.postDelayed(new RunnableExecuteScroll(scrollView, 0, offset), 0);
+			 }
+			 
+		 } else {
+			 listView.collapseGroup(position);
+		 }
+	}
+
+	protected static int computeTopOnRoot(View view) {
+		
+		int top = view.getTop();
+		ViewParent viewParent = view.getParent();
+		
+		while (true) {
+
+			if (viewParent instanceof View) {
+				view = (View) viewParent;
+				top += view.getTop();
+			}
+			
+			viewParent = viewParent.getParent();
+			
+			if (viewParent == null) {
+				break;
+			}
+			
+		}
+		
+		return top;
 	}
 }

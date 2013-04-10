@@ -27,14 +27,14 @@
         android:layout_alignBottom="@+id/innerGridView"
         />
 
- 
 	<com.example.ucmhomedemo21.HotSitesGridView
-		android:id="@+id/innerGridView"
+	    android:id="@+id/innerGridView"
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
 	    android:fadingEdge="none"
-	    android:scrollbars="none"
+	    android:horizontalSpacing="0dp"
 	    android:numColumns="2"
-	    />
+	    android:scrollbars="none"
+	    android:verticalSpacing="0dp" />
 
 </RelativeLayout>

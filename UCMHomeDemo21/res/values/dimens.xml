@@ -2,8 +2,8 @@
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="common_padding">4dp</dimen>
-    <dimen name="common_ignore_padding">-8dp</dimen>
     <color name="common_gray_color">#88888888</color>
+    <color name="no_color">#00000000</color>
     <dimen name="common_divider_height">1dp</dimen>
 
 </resources>

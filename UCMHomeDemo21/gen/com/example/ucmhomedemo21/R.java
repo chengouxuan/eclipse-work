@@ -15,6 +15,7 @@ public final class R {
     }
     public static final class color {
         public static final int common_gray_color=0x7f060000;
+        public static final int no_color=0x7f060001;
     }
     public static final class dimen {
         /** 
@@ -22,9 +23,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050003;
-        public static final int common_divider_height=0x7f050002;
-        public static final int common_ignore_padding=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f050002;
+        public static final int common_divider_height=0x7f050001;
         /**  Default screen margins, per the Android Design guidelines. 
          */
         public static final int common_padding=0x7f050000;
@@ -46,20 +46,21 @@ public final class R {
         public static final int homepage_famous_sites_bg=0x7f02000d;
         public static final int ifeng=0x7f02000e;
         public static final int list_divider=0x7f02000f;
-        public static final int quick_btn_bg=0x7f020010;
-        public static final int quick_button=0x7f020011;
-        public static final int quick_button_h=0x7f020012;
-        public static final int quick_button_selector=0x7f020013;
-        public static final int sina=0x7f020014;
-        public static final int start_screen_background=0x7f020015;
-        public static final int toolbar_1=0x7f020016;
-        public static final int toolbar_fs=0x7f020017;
-        public static final int toolbar_menu_selected_landscape=0x7f020018;
-        public static final int toolbar_menu_selected_portrait=0x7f020019;
-        public static final int topbar_bg_landscape=0x7f02001a;
+        public static final int navigation_item_button_selector=0x7f020010;
+        public static final int quick_btn_bg=0x7f020011;
+        public static final int quick_button=0x7f020012;
+        public static final int quick_button_h=0x7f020013;
+        public static final int quick_button_selector=0x7f020014;
+        public static final int sina=0x7f020015;
+        public static final int start_screen_background=0x7f020016;
+        public static final int toolbar_1=0x7f020017;
+        public static final int toolbar_fs=0x7f020018;
+        public static final int toolbar_menu_selected_landscape=0x7f020019;
+        public static final int toolbar_menu_selected_portrait=0x7f02001a;
+        public static final int topbar_bg_landscape=0x7f02001b;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0022;
+        public static final int action_settings=0x7f0a0024;
         public static final int addressBarBackground=0x7f0a0000;
         public static final int addressBarEditText=0x7f0a0005;
         public static final int addressBarEditTextSearch=0x7f0a0002;
@@ -76,23 +77,25 @@ public final class R {
         public static final int bottomBarItemLayout4=0x7f0a000d;
         public static final int bottomBarItemLayout5=0x7f0a000e;
         public static final int bottomBarLayout=0x7f0a0017;
+        public static final int button=0x7f0a0021;
         public static final int button1=0x7f0a0003;
-        public static final int button2=0x7f0a0021;
+        public static final int button2=0x7f0a0023;
+        public static final int emptyTextView=0x7f0a001a;
         public static final int gridBackground=0x7f0a0019;
         public static final int gridView1=0x7f0a0013;
         public static final int homeOuterLayout=0x7f0a0015;
         public static final int imageView1=0x7f0a000f;
         public static final int innerGridView=0x7f0a0018;
         public static final int listView1=0x7f0a0014;
-        public static final int navigationAccessoryIcon=0x7f0a001f;
-        public static final int navigationDetailString=0x7f0a001e;
-        public static final int navigationIcon=0x7f0a001c;
-        public static final int navigationString=0x7f0a001d;
-        public static final int quickButton=0x7f0a0020;
+        public static final int navigationAccessoryIcon=0x7f0a0020;
+        public static final int navigationDetailString=0x7f0a001f;
+        public static final int navigationIcon=0x7f0a001d;
+        public static final int navigationString=0x7f0a001e;
+        public static final int quickButton=0x7f0a0022;
         public static final int quickButtonOuterLayout=0x7f0a0012;
         public static final int scrollView1=0x7f0a0016;
-        public static final int siteDescriptionString=0x7f0a001b;
-        public static final int siteIcon=0x7f0a001a;
+        public static final int siteDescriptionString=0x7f0a001c;
+        public static final int siteIcon=0x7f0a001b;
         public static final int topBarLayout=0x7f0a0010;
     }
     public static final class layout {
@@ -104,9 +107,11 @@ public final class R {
         public static final int home_layout_portrait=0x7f030005;
         public static final int hot_sites_layout=0x7f030006;
         public static final int hot_sites_view_item=0x7f030007;
-        public static final int navigation_list_view_item=0x7f030008;
-        public static final int navigation_list_view_layout=0x7f030009;
-        public static final int quick_button_layout=0x7f03000a;
+        public static final int navigation_expandable_list_view_common_child_view_layout=0x7f030008;
+        public static final int navigation_expandable_list_view_layout=0x7f030009;
+        public static final int navigation_list_view_item=0x7f03000a;
+        public static final int navigation_list_view_layout=0x7f03000b;
+        public static final int quick_button_layout=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f090000;

@@ -16,7 +16,6 @@ public class GridViewGridBackgroundView extends View {
 	private int rows;
 	
 	private Paint paint;
-	private int lineMargin;
 	
 	private GridViewInfo gridViewInfo;
 	
@@ -35,7 +34,6 @@ public class GridViewGridBackgroundView extends View {
 		this.setRows(0);
 		this.setColumns(0);
 		this.setupPaint();
-		this.lineMargin = 15;
 		this.setGridViewInfo(null);
 	}
 	
@@ -58,6 +56,29 @@ public class GridViewGridBackgroundView extends View {
 	 protected void onDraw(Canvas canvas) {
 	
 		 super.onDraw(canvas);
+
+		 int paddingLeft = 0;
+		 if (null != gridViewInfo) {
+			 paddingLeft = gridViewInfo.getPaddingLeft();
+		 }
+		 
+		 int paddingTop = 0;
+		 if (null != gridViewInfo) {
+			 paddingLeft = gridViewInfo.getPaddingTop();
+		 }
+		 
+		 int paddingRight = 0;
+		 if (null != gridViewInfo) {
+			 paddingLeft = gridViewInfo.getPaddingRight();
+		 }
+		 
+		 int paddingBottom = 0;
+		 if (null != gridViewInfo) {
+			 paddingLeft = gridViewInfo.getPaddingBottom();
+		 }
+		 
+		 paddingLeft += 6;
+		 paddingTop += 6;
 	
 		 double cellWidth = 0;
 		 if (gridViewInfo == null && this.columns != 0) {
@@ -66,11 +87,9 @@ public class GridViewGridBackgroundView extends View {
 			 cellWidth = this.gridViewInfo.getCellWidth(0, 0);
 		 }
 		 
-		 int lineMargin = this.lineMargin;
-		 
 		 for (int i = 1; i < this.getColumns(); ++i) {
 			 int x = (int)(i * cellWidth + 0.5);
-			 canvas.drawLine(x, 0 + lineMargin, x, this.getHeight() - lineMargin, this.paint);
+			 canvas.drawLine(x + paddingLeft, paddingTop, x + paddingLeft, this.getHeight() - paddingBottom, this.paint);
 		 }
 		 
 		 double cellHeight = 0;
@@ -82,7 +101,7 @@ public class GridViewGridBackgroundView extends View {
 		 
 		 for (int i = 1; i < this.getRows(); ++i) {
 			 int y = (int)(i * cellHeight + 0.5);
-			 canvas.drawLine(0 + lineMargin, y, this.getWidth() - lineMargin, y, this.paint);
+			 canvas.drawLine(paddingLeft, y + paddingTop, this.getWidth() - paddingRight, y + paddingTop, this.paint);
 		 }
 	 }
 
