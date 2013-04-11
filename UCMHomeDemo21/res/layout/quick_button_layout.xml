@@ -10,7 +10,7 @@
 		    <ImageView
 		        android:id="@+id/quickButton"
 		        android:contentDescription="@string/empty_description"
-		        android:layout_width="40dp"
+		        android:layout_width="37dp"
 		        android:layout_height="44dp"
 		        android:background="@drawable/add_url_bg" />
 

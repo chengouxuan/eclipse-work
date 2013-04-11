@@ -221,18 +221,25 @@ public class MainActivity extends Activity {
 		
 		View quickButtonBg = this.findViewById(R.id.quickButton);
 		if (quickButtonBg != null) {
-			quickButtonBg.setBackgroundResource(R.drawable.add_url_bg_h);
+			quickButtonBg.setBackgroundResource(R.drawable.quick_button);
+		}
+		
+		View quickButton = this.findViewById(R.id.button2);
+		if (quickButton != null) {
+			quickButton.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
 		}
 
-//		EditText editText = (EditText) this.findViewById(R.id.addressBarEditText);
-//		if (null != editText) {
-//			editText.setTextColor(R.color.common_gray_color);
-//		}
-//		
-//		EditText editTextSearch = (EditText) this.findViewById(R.id.addressBarEditText);
-//		if (null != editTextSearch) {
-//			editTextSearch.setTextColor(R.color.common_gray_color);
-//		}
+		EditText editText = (EditText) this.findViewById(R.id.addressBarEditText);
+		if (null != editText) {
+			editText.setTextColor(0xaaffffff);
+			editText.setHintTextColor(0xaaffffff);
+		}
+		
+		EditText editTextSearch = (EditText) this.findViewById(R.id.addressBarEditTextSearch);
+		if (null != editTextSearch) {
+			editTextSearch.setTextColor(0xaaffffff);
+			editTextSearch.setHintTextColor(0xaaffffff);
+		}
 	}
 	
 	private void fixOverScrollModes() {

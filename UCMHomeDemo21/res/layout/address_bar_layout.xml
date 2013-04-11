@@ -70,6 +70,7 @@
 		        android:layout_width="92dp"
 		        android:layout_height="44dp"
 		        android:hint="@string/search_hint"
+		        android:gravity="center_horizontal|center_vertical"
 		        android:background="@drawable/address_bar_edit_text_search_selector"
 		        android:paddingLeft="24dp"
 		        android:paddingRight="@dimen/common_padding"
