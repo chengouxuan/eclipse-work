@@ -1,5 +1,6 @@
 package com.example.ucmhomedemo21;
 
+import java.lang.reflect.Method;
 import java.nio.channels.Selector;
 
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.ViewParent;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -83,6 +85,7 @@ public class MainActivity extends Activity {
 			gridBackgroundView.setRows(gridViewDataAdapter.getNumRows());
 			
 			this.setupButtonSelectorsLandscape();
+			this.setupImageLandscape();
 			
 		} else {
 			
@@ -99,6 +102,8 @@ public class MainActivity extends Activity {
 		}
 		
 		this.setupDrawables();
+		
+		this.fixOverScrollModes();
 	}
 
 	@Override
@@ -204,6 +209,68 @@ public class MainActivity extends Activity {
 		{
 			Button button = (Button) this.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButton);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
+		}
+	}
+	
+	private void setupImageLandscape() {
+		
+		View addBg = this.findViewById(R.id.addressBarBackground);
+		if (addBg != null) {
+			addBg.setBackgroundResource(R.drawable.add_url_bg_h);
+		}
+		
+		View quickButtonBg = this.findViewById(R.id.quickButton);
+		if (quickButtonBg != null) {
+			quickButtonBg.setBackgroundResource(R.drawable.add_url_bg_h);
+		}
+
+//		EditText editText = (EditText) this.findViewById(R.id.addressBarEditText);
+//		if (null != editText) {
+//			editText.setTextColor(R.color.common_gray_color);
+//		}
+//		
+//		EditText editTextSearch = (EditText) this.findViewById(R.id.addressBarEditText);
+//		if (null != editTextSearch) {
+//			editTextSearch.setTextColor(R.color.common_gray_color);
+//		}
+	}
+	
+	private void fixOverScrollModes() {
+
+		ScrollView scrollView = (ScrollView) this.findViewById(R.id.scrollView1);
+		
+		if (scrollView != null) {
+			
+			try {
+				
+				Class<?> c = Class.forName("android.widget.ScrollView");
+				Method  method = c.getMethod("setOverScrollMode", int.class);
+				method.invoke(scrollView, 2);
+				
+			} catch (Exception e) {
+
+				Log.i("scrollview", String.format("%s", e.toString()));
+				return;
+			}
+		}
+		
+
+		ListView listView = (ListView) this.findViewById(R.id.listView1);
+		
+		if (listView != null) {
+			
+			try {
+				
+				Class<?> c = Class.forName("com.example.ucmhomedemo21.NavigationExpandableListView");
+				Method  method = c.getMethod("setOverScrollMode", int.class);
+				method.invoke(listView, 2);
+				
+			} catch (Exception e) {
+
+				Log.i("listview", String.format("%s", e.toString()));
+				return;
+			}
+			
 		}
 	}
 	

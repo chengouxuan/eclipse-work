@@ -45,7 +45,7 @@
 		        android:layout_height="44dp"
 		        android:paddingLeft="@dimen/common_padding"
 		        android:layout_toRightOf="@id/addressBarLine0"
-		        android:background="#00000000"
+		        android:background="@drawable/address_bar_edit_text_selector"
 		        android:hint="@string/type_in_address_hint" />
 		       
 		    <ImageView
@@ -67,13 +67,13 @@
 		    
 		    <EditText 
 		        android:id="@+id/addressBarEditTextSearch"
-		        android:layout_width="68dp"
+		        android:layout_width="92dp"
 		        android:layout_height="44dp"
-		        android:paddingLeft="@dimen/common_padding"
 		        android:hint="@string/search_hint"
-		        android:background="#00000000"
-		        android:layout_toRightOf="@+id/addressBarSearchIcon" />   
-		        
+		        android:background="@drawable/address_bar_edit_text_search_selector"
+		        android:paddingLeft="24dp"
+		        android:paddingRight="@dimen/common_padding"
+		        android:layout_toRightOf="@+id/addressBarLine1" />
 	    
 
 </RelativeLayout>

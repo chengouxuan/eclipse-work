@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-	            android:layout_width="fill_parent"
-	            android:layout_height="fill_parent"
-    >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
     
     <ImageView
         android:layout_height="0dp"
@@ -33,7 +31,12 @@
 	    android:layout_height="fill_parent"
 	    android:fadingEdge="none"
 	    android:horizontalSpacing="0dp"
+	    android:listSelector="@color/no_color"
 	    android:numColumns="2"
+	    android:paddingBottom="@dimen/grid_view_comon_padding"
+	    android:paddingLeft="@dimen/grid_view_comon_padding"
+	    android:paddingRight="@dimen/grid_view_comon_padding"
+	    android:paddingTop="@dimen/grid_view_comon_padding"
 	    android:scrollbars="none"
 	    android:verticalSpacing="0dp" />
 

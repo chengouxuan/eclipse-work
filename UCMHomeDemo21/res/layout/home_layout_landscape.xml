@@ -7,15 +7,15 @@
 
     
 
-	        <ImageView
-	            android:id="@+id/imageView1"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:layout_alignLeft="@+id/topBarLayout"
-	            android:layout_alignRight="@+id/topBarLayout"
-	            android:layout_alignBottom="@+id/topBarLayout"
-	            android:layout_alignTop="@+id/topBarLayout"
-	            android:background="@drawable/topbar_bg_landscape" />
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/topBarLayout"
+            android:layout_alignRight="@+id/topBarLayout"
+            android:layout_alignBottom="@+id/topBarLayout"
+            android:layout_alignTop="@+id/topBarLayout"
+            android:background="@drawable/toolbar_bg_horizental" />
 	        
         <LinearLayout
             android:id="@+id/topBarLayout"

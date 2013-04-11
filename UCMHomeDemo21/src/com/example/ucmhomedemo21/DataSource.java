@@ -29,7 +29,8 @@ public class DataSource {
 	public static String hotSitesStrings[] = {
 		"新 浪", "百 度", "搜 狐",
 		"3 G", "凤 凰", "亚马逊",
-		"赶 集", "乐 讯", "当 当"
+		"赶 集", "乐 讯", "当 当",
+		"UC"
 	};
 
 }

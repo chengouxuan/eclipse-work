@@ -4,8 +4,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/default_wallpaper" >
-
-        
            
     <RelativeLayout
         android:id="@+id/topBarLayout"
@@ -32,7 +30,8 @@
         android:layout_above="@+id/bottomBarLayout"
         android:layout_below="@+id/topBarLayout"
         android:fadingEdge="none"
-        android:scrollbars="none" >
+        android:scrollbars="none"
+		 >
 
         <LinearLayout
             android:layout_width="fill_parent"

@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -18,7 +19,7 @@ public class GridViewDataAdapter
 
 extends BaseAdapter
 
-implements GridViewInfo {
+implements GridViewInfo, GridItemPositionInfo {
 	
 
 	private View commonItemView;
@@ -84,10 +85,30 @@ implements GridViewInfo {
 			BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
 			icon.setImageDrawable(bitmapDrawable);
 			
+			GridItemBackground background = (GridItemBackground) xmlView.findViewById(R.id.background);
+			background.setIndex(position);
+			background.setPositionInfo(this);
+			
 			view = xmlView;
 //		}
 			
 		this.commonItemView = view;
+		
+		int gridViewContentWidth = this.gridView.getMeasuredWidth() - this.gridView.getPaddingLeft() - this.gridView.getPaddingRight();
+		int gridViewContentHeight = this.gridView.getMeasuredHeight() - this.gridView.getPaddingTop() - this.gridView.getPaddingBottom();
+		
+		int minHeight = (int)(gridViewContentHeight / this.getNumRows() + 0.5);
+		int minWidth = (int)(gridViewContentWidth / this.getNumColumns() + 0.5);
+//		
+		view.setMinimumHeight(minHeight);
+		view.setMinimumWidth(minWidth);
+//		
+//		int widthMeasureSpec = MeasureSpec.makeMeasureSpec(minWidth, MeasureSpec.AT_MOST);
+//		int heightMeasureSpec = MeasureSpec.makeMeasureSpec(minHeight, MeasureSpec.AT_MOST);
+//		
+//		view.measure(widthMeasureSpec, heightMeasureSpec);
+		
+//		view.requestLayout();
 		
 		return view;
 	}
@@ -178,5 +199,30 @@ implements GridViewInfo {
 			return 0;
 		}
 	}
-	
+
+	@Override
+	public boolean isRightMostItem(int index) {
+		int columns = this.getNumColumns();
+		return (index % columns) == (columns - 1);
+	}
+
+	@Override
+	public boolean isLeftMostItem(int index) {
+		int columns = this.getNumColumns();
+		return (index % columns) == 0;
+	}
+
+	@Override
+	public boolean isTopMostItem(int index) {
+		int columns = this.getNumColumns();
+		return index / columns == 0;
+	}
+
+	@Override
+	public boolean isBottomItem(int index) {
+		int columns = this.getNumColumns();
+		int rows = this.getNumRows();
+		return (index / columns) == (rows - 1);
+	}
+
 }

@@ -5,5 +5,6 @@
     <color name="common_gray_color">#88888888</color>
     <color name="no_color">#00000000</color>
     <dimen name="common_divider_height">1dp</dimen>
+    <dimen name="grid_view_comon_padding">6dp</dimen>
 
 </resources>
