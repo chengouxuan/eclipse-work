@@ -14,9 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class ExpandableListViewDataAdapter
-
-implements ExpandableListAdapter, ListViewInfo {
+public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 
 	private Context context;
 	private ExpandableListView expandableListView;
@@ -91,7 +89,7 @@ implements ExpandableListAdapter, ListViewInfo {
 				
 				LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 				
-				View xmlView = inflater.inflate(R.layout.navigation_list_view_item, null);
+				View xmlView = inflater.inflate(R.layout.navigation_expandable_list_view_group_layout, null);
 				
 				TextView textView = (TextView)xmlView.findViewById(R.id.navigationString);
 				textView.setText(DataSource.navigationStrings[groupPosition]);
@@ -145,11 +143,11 @@ implements ExpandableListAdapter, ListViewInfo {
 	@Override
 	public void onGroupExpanded(int groupPosition) {
 		
-//		for (int i = 0; i < this.getGroupCount(); ++i) {
-//			if (i != groupPosition) {
-//				this.getExpandableListView().collapseGroup(i);
-//			}
-//		}
+		for (int i = 0; i < this.getGroupCount(); ++i) {
+			if (i != groupPosition) {
+				this.getExpandableListView().collapseGroup(i);
+			}
+		}
 	}
 
 	@Override
@@ -176,14 +174,4 @@ implements ExpandableListAdapter, ListViewInfo {
 		this.expandableListView = expandableListView;
 	}
 
-	@Override
-	public int getListViewHeight() {
-		
-		if (this.commonGroupView != null && this.commonGroupView != null) {
-			int childMeasuredHeight = this.commonChildView.getMeasuredHeight();
-			return commonGroupView.getMeasuredHeight() * this.getGroupCount() + childMeasuredHeight;
-		} else {
-			return 0;
-		}
-	}
 }

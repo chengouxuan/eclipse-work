@@ -9,8 +9,6 @@ public class NavigationExpandableListView extends ExpandableListView {
 
 	private boolean scrollable;
 
-	private ListViewInfo listViewInfo;
-	
 	public NavigationExpandableListView(Context context) {
 		super(context);
 		this.setScrollable(false);
@@ -49,12 +47,5 @@ public class NavigationExpandableListView extends ExpandableListView {
 		}
 	}
 
-	public ListViewInfo getListViewInfo() {
-		return listViewInfo;
-	}
-
-	public void setListViewInfo(ListViewInfo listViewInfo) {
-		this.listViewInfo = listViewInfo;
-	}
 
 }

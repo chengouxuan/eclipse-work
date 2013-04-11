@@ -61,7 +61,6 @@ public class MainActivity extends Activity {
 		
 		listView.setAdapter(adapter);
 		adapter.setExpandableListView(listView);
-		listView.setListViewInfo(adapter);
 		
 		GridViewDataAdapter gridViewDataAdapter = new GridViewDataAdapter(this);
 		HotSitesGridView gridView = (HotSitesGridView) findViewById(R.id.gridView1).findViewById(R.id.innerGridView);
@@ -218,7 +217,9 @@ public class MainActivity extends Activity {
 
 			 for (int i = 0; i < listViewAdapter.getGroupCount(); ++i) {
 				 if (i != position) {
-					 listView.collapseGroup(i);
+					 if (listView.isGroupExpanded(i)) {
+						 listView.collapseGroup(i);
+					 }
 				 } else {
 					 listView.expandGroup(position);
 				 }
@@ -233,10 +234,8 @@ public class MainActivity extends Activity {
 			 } else {
 
 				 ScrollView scrollView = (ScrollView) this.findViewById(R.id.scrollView1);
-				 int offset = MainActivity.computeTopOnRoot((View) senderView.getParent())
-						 - MainActivity.computeTopOnRoot(scrollView) - scrollView.getPaddingTop();
-				 
-				 this.handler.postDelayed(new RunnableExecuteScroll(scrollView, 0, offset), 0);
+				 Runnable runnable = new RunnableExecuteScroll(scrollView, listView, position);
+				 this.handler.postDelayed(runnable, 0);
 			 }
 			 
 		 } else {
@@ -244,26 +243,4 @@ public class MainActivity extends Activity {
 		 }
 	}
 
-	protected static int computeTopOnRoot(View view) {
-		
-		int top = view.getTop();
-		ViewParent viewParent = view.getParent();
-		
-		while (true) {
-
-			if (viewParent instanceof View) {
-				view = (View) viewParent;
-				top += view.getTop();
-			}
-			
-			viewParent = viewParent.getParent();
-			
-			if (viewParent == null) {
-				break;
-			}
-			
-		}
-		
-		return top;
-	}
 }
