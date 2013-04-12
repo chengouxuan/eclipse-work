@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.ListView;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
