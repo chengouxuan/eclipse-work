@@ -1,10 +1,7 @@
 package com.example.ucmhomedemo21;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.View.MeasureSpec;
 import android.widget.GridView;
 
 public class HotSitesGridView extends GridView {

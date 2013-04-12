@@ -1,26 +1,19 @@
 package com.example.ucmhomedemo21;
 
 import java.lang.reflect.Method;
-import java.nio.channels.Selector;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
-import android.view.ViewParent;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ScrollView;
-//import android.widget.GridView;
 import android.widget.ListView;
-import android.app.AlertDialog;
 import android.content.res.Configuration;
-//import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -69,10 +62,7 @@ public class MainActivity extends Activity {
 		
 		gridView.setAdapter(gridViewDataAdapter);
 		gridViewDataAdapter.setGridView(gridView);
-		
-		GridViewGridBackgroundView gridBackgroundView = (GridViewGridBackgroundView) findViewById(R.id.gridBackground);
-		gridBackgroundView.setGridViewInfo(gridViewDataAdapter);
-		
+				
 		if (isLandscape) {
 
 			listView.setScrollable(true);
@@ -80,9 +70,6 @@ public class MainActivity extends Activity {
 			gridView.setScrollable(true);
 			gridView.setNumColumns(2);
 			gridViewDataAdapter.setNumColumns(2);
-			
-			gridBackgroundView.setColumns(2);
-			gridBackgroundView.setRows(gridViewDataAdapter.getNumRows());
 			
 			this.setupButtonSelectorsLandscape();
 			this.setupImageLandscape();
@@ -94,9 +81,6 @@ public class MainActivity extends Activity {
 			gridView.setScrollable(false);
 			gridView.setNumColumns(3);
 			gridViewDataAdapter.setNumColumns(3);
-
-			gridBackgroundView.setColumns(3);
-			gridBackgroundView.setRows(gridViewDataAdapter.getNumRows());
 			
 			this.setupButtonSelectorsPortrait();
 		}
@@ -115,10 +99,6 @@ public class MainActivity extends Activity {
 
 	public void anyButtonClicked(View senderView) {
 
-//		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//		builder.setMessage(senderView.toString());
-//		AlertDialog dialog = builder.create();
-//		dialog.show();
 	}
 	
 	private Drawable clipIconAtIndex(int resourceId, int index, int totalIcons) {
@@ -244,7 +224,7 @@ public class MainActivity extends Activity {
 	
 	private void fixOverScrollModes() {
 
-		ScrollView scrollView = (ScrollView) this.findViewById(R.id.scrollView1);
+		ScrollView scrollView = (ScrollView) this.findViewById(R.id.linearLayoutOuterScrollView);
 		
 		if (scrollView != null) {
 			
@@ -307,7 +287,7 @@ public class MainActivity extends Activity {
 				 
 			 } else {
 
-				 ScrollView scrollView = (ScrollView) this.findViewById(R.id.scrollView1);
+				 ScrollView scrollView = (ScrollView) this.findViewById(R.id.linearLayoutOuterScrollView);
 				 Runnable runnable = new RunnableExecuteScroll(scrollView, listView, position);
 				 this.handler.postDelayed(runnable, 0);
 			 }

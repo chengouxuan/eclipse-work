@@ -11,6 +11,7 @@
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/empty_description"
             android:layout_alignLeft="@+id/topBarLayout"
             android:layout_alignRight="@+id/topBarLayout"
             android:layout_alignBottom="@+id/topBarLayout"
@@ -66,6 +67,11 @@
 	        android:layout_height="fill_parent"
 	        android:layout_alignParentBottom="true"
 	   		android:layout_below="@+id/topBarLayout"
+	   		android:baselineAligned="false"
+		    android:paddingLeft="@dimen/common_padding"
+		    android:paddingTop="@dimen/common_padding"
+		    android:paddingRight="@dimen/common_padding"
+		    android:paddingBottom="@dimen/common_padding"
             >
         
 	        <include 

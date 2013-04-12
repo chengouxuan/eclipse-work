@@ -19,9 +19,6 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 	private Context context;
 	private ExpandableListView expandableListView;
 	
-	private View commonGroupView;
-	private View commonChildView;
-	
 	ExpandableListViewDataAdapter(Context context) {
 		this.setContext(context);
 	}
@@ -45,7 +42,6 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.navigation_expandable_list_view_common_child_view_layout, null);
-		this.commonChildView = view;
 		return view;
 	}
 
@@ -83,40 +79,24 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 	public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 		View view = convertView;
 		
+		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
-//		if (convertView == null) {
-//			if (position != 0) {
-				
-				LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				
-				View xmlView = inflater.inflate(R.layout.navigation_expandable_list_view_group_layout, null);
-				
-				TextView textView = (TextView)xmlView.findViewById(R.id.navigationString);
-				textView.setText(DataSource.navigationStrings[groupPosition]);
-				
-				ImageView icon = (ImageView)xmlView.findViewById(R.id.navigationIcon);
-				Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.glob);
-				BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
-				icon.setImageDrawable(bitmapDrawable);
-				
-				TextView detailTextView = (TextView)xmlView.findViewById(R.id.navigationDetailString);
-				detailTextView.setText(DataSource.navigationDetailStrings[groupPosition]);
-				
-				xmlView.findViewById(R.id.button).setTag(String.format("%d", groupPosition));
-				
-				view = xmlView;
-//			} else {
-//				
-//
-//				GridView gridView = new HotSitesGridView(getContext());
-//				gridView.setAdapter(new GridViewDataAdapter(getContext()));
-//				gridView.setNumColumns(DataSource.hotSitesColumns);
-//				
-//				view = gridView;
-//			}
-//		}
+		View xmlView = inflater.inflate(R.layout.navigation_expandable_list_view_group_layout, null);
 		
-		this.commonGroupView = view;
+		TextView textView = (TextView)xmlView.findViewById(R.id.navigationString);
+		textView.setText(DataSource.navigationStrings[groupPosition]);
+		
+		ImageView icon = (ImageView)xmlView.findViewById(R.id.navigationIcon);
+		Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.glob);
+		BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
+		icon.setImageDrawable(bitmapDrawable);
+		
+		TextView detailTextView = (TextView)xmlView.findViewById(R.id.navigationDetailString);
+		detailTextView.setText(DataSource.navigationDetailStrings[groupPosition]);
+		
+		xmlView.findViewById(R.id.button).setTag(String.format("%d", groupPosition));
+		
+		view = xmlView;
 		
 		return view;
 	}

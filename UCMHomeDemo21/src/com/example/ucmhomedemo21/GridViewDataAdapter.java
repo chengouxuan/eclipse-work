@@ -5,10 +5,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -19,10 +17,8 @@ public class GridViewDataAdapter
 
 extends BaseAdapter
 
-implements GridViewInfo, GridItemPositionInfo {
+implements GridItemPositionInfo {
 	
-
-	private View commonItemView;
 	private GridView gridView;
 	
 	private Context context;
@@ -31,7 +27,6 @@ implements GridViewInfo, GridItemPositionInfo {
 	public GridViewDataAdapter(Context context) {
 		this.setContext(context);
 		this.setNumColumns(0);
-		this.commonItemView = null;
 	}
 
 	protected Context getContext() {
@@ -70,45 +65,33 @@ implements GridViewInfo, GridItemPositionInfo {
 
 		View view = convertView;
 		
-//		if (convertView == null) {
-
-			LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			
-			View xmlView = inflater.inflate(R.layout.hot_sites_view_item, null);
+		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
-			
-			TextView textView = (TextView) xmlView.findViewById(R.id.siteDescriptionString);
-			textView.setText(DataSource.hotSitesStrings[position]);
+		View xmlView = inflater.inflate(R.layout.hot_sites_view_item, null);
+	
+		
+		TextView textView = (TextView) xmlView.findViewById(R.id.siteDescriptionString);
+		textView.setText(DataSource.hotSitesStrings[position]);
 
-			ImageView icon = (ImageView)xmlView.findViewById(R.id.siteIcon);
-			Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.sina);
-			BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
-			icon.setImageDrawable(bitmapDrawable);
-			
-			GridItemBackground background = (GridItemBackground) xmlView.findViewById(R.id.background);
-			background.setIndex(position);
-			background.setPositionInfo(this);
-			
-			view = xmlView;
-//		}
-			
-		this.commonItemView = view;
+		ImageView icon = (ImageView)xmlView.findViewById(R.id.siteIcon);
+		Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.sina);
+		BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
+		icon.setImageDrawable(bitmapDrawable);
+		
+		GridItemBackground background = (GridItemBackground) xmlView.findViewById(R.id.background);
+		background.setIndex(position);
+		background.setPositionInfo(this);
+		
+		view = xmlView;
 		
 		int gridViewContentWidth = this.gridView.getMeasuredWidth() - this.gridView.getPaddingLeft() - this.gridView.getPaddingRight();
 		int gridViewContentHeight = this.gridView.getMeasuredHeight() - this.gridView.getPaddingTop() - this.gridView.getPaddingBottom();
 		
 		int minHeight = (int)(gridViewContentHeight / this.getNumRows() + 0.5);
 		int minWidth = (int)(gridViewContentWidth / this.getNumColumns() + 0.5);
-//		
+
 		view.setMinimumHeight(minHeight);
 		view.setMinimumWidth(minWidth);
-//		
-//		int widthMeasureSpec = MeasureSpec.makeMeasureSpec(minWidth, MeasureSpec.AT_MOST);
-//		int heightMeasureSpec = MeasureSpec.makeMeasureSpec(minHeight, MeasureSpec.AT_MOST);
-//		
-//		view.measure(widthMeasureSpec, heightMeasureSpec);
-		
-//		view.requestLayout();
 		
 		return view;
 	}
@@ -131,30 +114,6 @@ implements GridViewInfo, GridItemPositionInfo {
 			return 0;
 		}
 	}
-	
-	
-	@Override
-	public int getCellHeight(int row, int column) {
-		
-		View view = this.commonItemView;
-		
-		if (view != null) {
-			return view.getMeasuredHeight();
-		} else {
-			return 0;
-		}
-	}
-
-	@Override
-	public int getCellWidth(int row, int column) {
-		View view = this.commonItemView;
-		
-		if (view != null) {
-			return view.getMeasuredWidth();
-		} else {
-			return 0;
-		}
-	}
 
 	public GridView getGridView() {
 		return gridView;
@@ -162,42 +121,6 @@ implements GridViewInfo, GridItemPositionInfo {
 
 	public void setGridView(GridView gridView) {
 		this.gridView = gridView;
-	}
-
-	@Override
-	public int getPaddingTop() {
-		if (null != this.gridView) {
-			return gridView.getPaddingTop();
-		} else {
-			return 0;
-		}
-	}
-
-	@Override
-	public int getPaddingRight() {
-		if (null != this.gridView) {
-			return gridView.getPaddingRight();
-		} else {
-			return 0;
-		}
-	}
-
-	@Override
-	public int getPaddingBottom() {
-		if (null != this.gridView) {
-			return gridView.getPaddingBottom();
-		} else {
-			return 0;
-		}
-	}
-
-	@Override
-	public int getPaddingLeft() {
-		if (null != this.gridView) {
-			return gridView.getPaddingLeft();
-		} else {
-			return 0;
-		}
 	}
 
 	@Override

@@ -13,17 +13,6 @@
 	    android:background="@drawable/add_url_bg"
 	    android:contentDescription="@string/empty_description"
         />
-  
-
-  	<com.example.ucmhomedemo21.GridViewGridBackgroundView
-  	    android:id="@+id/gridBackground"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
-        android:layout_alignLeft="@+id/innerGridView"
-        android:layout_alignTop="@+id/innerGridView"
-        android:layout_alignRight="@+id/innerGridView"
-        android:layout_alignBottom="@+id/innerGridView"
-        />
 
 	<com.example.ucmhomedemo21.HotSitesGridView
 	    android:id="@+id/innerGridView"

@@ -4,55 +4,66 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/default_wallpaper" >
-           
-    <RelativeLayout
-        android:id="@+id/topBarLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" >
-        
-	    
-        <include
-            layout="@layout/address_bar_layout"
-            android:id="@+id/addressBarLayout"            />
-	        
-        <include
-            layout="@layout/quick_button_layout"
-            android:id="@+id/quickButtonOuterLayout"
-            />
-	    
-    </RelativeLayout>
     
-    <ScrollView
-        android:id="@+id/scrollView1"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bottomBarLayout"
-        android:layout_below="@+id/topBarLayout"
-        android:fadingEdge="none"
-        android:scrollbars="none"
-		 >
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical" >
-
-            <include 
-                layout="@layout/hot_sites_layout"
-	            android:id="@+id/gridView1"
-	            android:numColumns="3"
-                />
-		     
-            <include
-                layout="@layout/navigation_expandable_list_view_layout"
-                android:id="@+id/listView1"
-                />
-
-        </LinearLayout>
-
-    </ScrollView>
+		   android:paddingLeft="@dimen/common_padding"
+		   android:paddingTop="@dimen/common_padding"
+		   android:paddingRight="@dimen/common_padding"
+		   android:paddingBottom="@dimen/common_padding"
+	   	android:layout_alignParentTop="true"
+	        android:layout_above="@+id/bottomBarLayout"
+        >
+           
+	    <RelativeLayout
+	        android:id="@+id/topBarLayout"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" >
+	        
+		    
+	        <include
+	            layout="@layout/address_bar_layout"
+	            android:id="@+id/addressBarLayout"            />
+		        
+	        <include
+	            layout="@layout/quick_button_layout"
+	            android:id="@+id/quickButtonOuterLayout"
+	            />
+		    
+	    </RelativeLayout>
+	    
+	    <ScrollView
+	        android:id="@+id/linearLayoutOuterScrollView"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:layout_below="@+id/topBarLayout"
+	        android:layout_alignParentBottom="true"
+	        android:fadingEdge="none"
+	        android:scrollbars="none"
+			 >
+	
+	        <LinearLayout
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="vertical" >
+	
+	            <include 
+	                layout="@layout/hot_sites_layout"
+		            android:id="@+id/gridView1"
+		            android:numColumns="3"
+	                />
+			     
+	            <include
+	                layout="@layout/navigation_expandable_list_view_layout"
+	                android:id="@+id/listView1"
+	                />
+	
+	        </LinearLayout>
+	
+	    </ScrollView>
      
+    </RelativeLayout>
 
     <include 
         layout="@layout/bottom_bar_layout"
