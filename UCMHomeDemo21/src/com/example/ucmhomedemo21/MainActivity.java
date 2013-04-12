@@ -49,8 +49,6 @@ implements LaunchController {
 		
 		super.onCreate(savedInstanceState);
 		
-		Log.i("xxx", "on create");
-
 		if (this.handler == null) {
 			this.handler = new Handler();
 		}
@@ -349,7 +347,6 @@ implements LaunchController {
 
 	@Override
 	public void onFinishLaunching() {
-		Log.i("xxx", "on finish launcuing");
 		MainActivity.isInitializing = false;
 		this.setupHomeContentView();
 	}
