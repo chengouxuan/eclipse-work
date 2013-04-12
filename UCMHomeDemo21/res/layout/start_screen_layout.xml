@@ -7,10 +7,10 @@
     tools:context=".StartScreenActivity" >
  
     <ImageView
-        android:contentDescription="@string/start_screen"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:scaleType="center"
+        android:contentDescription="@string/start_screen"
+        android:scaleType="centerCrop"
         android:src="@drawable/init_logo" />
     
 </LinearLayout>
