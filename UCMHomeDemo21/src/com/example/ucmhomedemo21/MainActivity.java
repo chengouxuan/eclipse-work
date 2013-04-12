@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.ListView;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -214,6 +215,12 @@ implements LaunchController {
 		{
 			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButton);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
+			
+			button.setOnClickListener(new View.OnClickListener() {
+	             public void onClick(View v) {
+	            	 System.exit(0);
+	             }
+	         });
 		}
 	}
 	
@@ -237,6 +244,12 @@ implements LaunchController {
 		{
 			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButton);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
+			
+			button.setOnClickListener(new View.OnClickListener() {
+	             public void onClick(View v) {
+	            	 System.exit(0);
+	             }
+	         });
 		}
 	}
 	
