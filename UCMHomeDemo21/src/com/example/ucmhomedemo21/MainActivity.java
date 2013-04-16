@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.ScrollView;
 import android.widget.ListView;
 import android.content.Context;
@@ -34,6 +34,7 @@ implements LaunchController {
 	
 	private View contentViewLandscape;
 	private View contentViewPortrait;
+	private View startScreenView;
 	
 	private ExpandableListViewDataAdapter listViewAdapter;
 	
@@ -42,6 +43,7 @@ implements LaunchController {
 		this.handler = null;
 		this.contentViewLandscape = null;
 		this.contentViewPortrait = null;
+		this.startScreenView = null;
 	}
 
 	@Override
@@ -55,11 +57,15 @@ implements LaunchController {
 		
 		if (MainActivity.isInitializing) {
 
-			this.setContentView(R.layout.start_screen_layout);
+			if (this.startScreenView == null) {
+				this.startScreenView = MainActivity.createStartScreenView(this);
+			}
+			
+			this.setContentView(this.startScreenView);
 			
 			if (! MainActivity.finishLaunching) {
 				MainActivity.finishLaunching = true;
-				this.handler.postDelayed(new RunnableLauncher(this), 5 * 1000);
+				this.handler.postDelayed(new RunnableLauncher(this), 2 * 1000);
 			}
 			
 			this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -87,8 +93,7 @@ implements LaunchController {
 		if (isLandscape) {
 
 			if (this.contentViewLandscape == null) {
-				LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				this.contentViewLandscape = inflater.inflate(R.layout.home_layout_landscape, null);
+				this.contentViewLandscape = new HomeLayoutLandscape(this);
 			}
 			
 			contentView = this.contentViewLandscape;
@@ -96,22 +101,24 @@ implements LaunchController {
 		} else {
 
 			if (this.contentViewPortrait == null) {
-				LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				this.contentViewPortrait = inflater.inflate(R.layout.home_layout_portrait, null);
+				this.contentViewPortrait = new HomeLayoutPortrait(this);
 			}
 			
 			contentView = this.contentViewPortrait;
 		}
 
+		final int listViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_LIST_VIEW);
+		final int hotSitesViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.HOT_SITES_LIST_VIEW);
+		
 		ExpandableListViewDataAdapter adapter = new ExpandableListViewDataAdapter(this);
-		NavigationExpandableListView listView = (NavigationExpandableListView) contentView.findViewById(R.id.listView1);
+		NavigationExpandableListView listView = (NavigationExpandableListView) contentView.findViewById(listViewId);
 		this.listViewAdapter = adapter;
 		
 		listView.setAdapter(adapter);
 		adapter.setExpandableListView(listView);
 		
 		GridViewDataAdapter gridViewDataAdapter = new GridViewDataAdapter(this);
-		HotSitesGridView gridView = (HotSitesGridView) contentView.findViewById(R.id.gridView1).findViewById(R.id.innerGridView);
+		HotSitesGridView gridView = (HotSitesGridView) contentView.findViewById(hotSitesViewId);
 		
 		gridView.setAdapter(gridViewDataAdapter);
 		gridViewDataAdapter.setGridView(gridView);
@@ -162,57 +169,73 @@ implements LaunchController {
 	}
 	
 	private void setupDrawables(View rootView) {
+
+		final int itemId1 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM1);
+		final int itemId2 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM2);
+		final int itemId3 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM3);
+		final int itemId4 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM4);
+		final int itemId5 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM5);
+		
+		final int buttonId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_BUTTON_IMAGE);
 		
 		{
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 2, 11);
-			ImageView imageView = (ImageView) rootView.findViewById(R.id.bottomBarItemLayout1).findViewById(R.id.bottomBarButtonImage);
+			ImageView imageView = (ImageView) rootView.findViewById(itemId1).findViewById(buttonId);
 			imageView.setImageDrawable(drawable);
 		}
 		
 		{
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 3, 11);
-			ImageView imageView = (ImageView) rootView.findViewById(R.id.bottomBarItemLayout2).findViewById(R.id.bottomBarButtonImage);
+			ImageView imageView = (ImageView) rootView.findViewById(itemId2).findViewById(buttonId);
 			imageView.setImageDrawable(drawable);
 		}
 		
 		{
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 4, 11);
-			ImageView imageView = (ImageView) rootView.findViewById(R.id.bottomBarItemLayout3).findViewById(R.id.bottomBarButtonImage);
+			ImageView imageView = (ImageView) rootView.findViewById(itemId3).findViewById(buttonId);
 			imageView.setImageDrawable(drawable);
 		}
 	
 		{
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 5, 11);
-			ImageView imageView = (ImageView) rootView.findViewById(R.id.bottomBarItemLayout4).findViewById(R.id.bottomBarButtonImage);
+			ImageView imageView = (ImageView) rootView.findViewById(itemId4).findViewById(buttonId);
 			imageView.setImageDrawable(drawable);
 		}
 		
 		{
 			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 6, 11);
-			ImageView imageView = (ImageView) rootView.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButtonImage);
+			ImageView imageView = (ImageView) rootView.findViewById(itemId5).findViewById(buttonId);
 			imageView.setImageDrawable(drawable);
 		}
 	}
 	
 	private void setupButtonSelectorsPortrait(View rootView) {
+		
+		final int buttonId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_BUTTON);
+		final int itemId1 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM1);
+		final int itemId2 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM2);
+		final int itemId3 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM3);
+		final int itemId4 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM4);
+		final int itemId5 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM5);
+		
 		{
-			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout1).findViewById(R.id.bottomBarButton);
+			Button button = (Button) rootView.findViewById(itemId1).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
 		}
 		{
-			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout2).findViewById(R.id.bottomBarButton);
+			Button button = (Button) rootView.findViewById(itemId2).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
 		}
 		{
-			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout3).findViewById(R.id.bottomBarButton);
+			Button button = (Button) rootView.findViewById(itemId3).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
 		}
 		{
-			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout4).findViewById(R.id.bottomBarButton);
+			Button button = (Button) rootView.findViewById(itemId4).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
 		}
 		{
-			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButton);
+			Button button = (Button) rootView.findViewById(itemId5).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
 			
 			button.setOnClickListener(new View.OnClickListener() {
@@ -224,24 +247,32 @@ implements LaunchController {
 	}
 	
 	private void setupButtonSelectorsLandscape(View rootView) {
+
+		final int buttonId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_BUTTON);
+		final int itemId1 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM1);
+		final int itemId2 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM2);
+		final int itemId3 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM3);
+		final int itemId4 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM4);
+		final int itemId5 = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_ITEM5);
+		
 		{
-			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout1).findViewById(R.id.bottomBarButton);
+			Button button = (Button) rootView.findViewById(itemId1).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
 		}
 		{
-			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout2).findViewById(R.id.bottomBarButton);
+			Button button = (Button) rootView.findViewById(itemId2).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
 		}
 		{
-			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout3).findViewById(R.id.bottomBarButton);
+			Button button = (Button) rootView.findViewById(itemId3).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
 		}
 		{
-			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout4).findViewById(R.id.bottomBarButton);
+			Button button = (Button) rootView.findViewById(itemId4).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
 		}
 		{
-			Button button = (Button) rootView.findViewById(R.id.bottomBarItemLayout5).findViewById(R.id.bottomBarButton);
+			Button button = (Button) rootView.findViewById(itemId5).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
 			
 			button.setOnClickListener(new View.OnClickListener() {
@@ -254,28 +285,29 @@ implements LaunchController {
 	
 	private void setupImageLandscape(View rootView) {
 		
-		View addBg = rootView.findViewById(R.id.addressBarBackground);
+		ImageView addBg = (ImageView) rootView.findViewById(GlobalViewIds.getIdOf(GlobalViewIds.Ids.ADDRESS_BAR_BACKGROUND));
 		if (addBg != null) {
-			addBg.setBackgroundResource(R.drawable.add_url_bg_h);
+			addBg.setImageResource(R.drawable.add_url_bg_h);
 		}
 		
-		View quickButtonBg = rootView.findViewById(R.id.quickButton);
+		ImageView quickButtonBg = (ImageView) rootView.findViewById(GlobalViewIds.getIdOf(GlobalViewIds.Ids.QUICK_BUTTON_BACKGROUND));
 		if (quickButtonBg != null) {
-			quickButtonBg.setBackgroundResource(R.drawable.quick_button);
+			quickButtonBg.setImageResource(R.drawable.quick_button);
 		}
-		
-		View quickButton = rootView.findViewById(R.id.button2);
+
+		Button quickButton = (Button) rootView.findViewById(GlobalViewIds.getIdOf(GlobalViewIds.Ids.QUICK_BUTTON));
 		if (quickButton != null) {
 			quickButton.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
 		}
 
-		EditText editText = (EditText) rootView.findViewById(R.id.addressBarEditText);
+
+		EditText editText = (EditText) rootView.findViewById(GlobalViewIds.getIdOf(GlobalViewIds.Ids.ADDRESS_BAR_EDIT_TEXT));
 		if (null != editText) {
 			editText.setTextColor(0xaaffffff);
 			editText.setHintTextColor(0xaaffffff);
 		}
 		
-		EditText editTextSearch = (EditText) rootView.findViewById(R.id.addressBarEditTextSearch);
+		EditText editTextSearch = (EditText) rootView.findViewById(GlobalViewIds.getIdOf(GlobalViewIds.Ids.ADDRESS_BAR_EDIT_TEXT_SEARCH));
 		if (null != editTextSearch) {
 			editTextSearch.setTextColor(0xaaffffff);
 			editTextSearch.setHintTextColor(0xaaffffff);
@@ -283,8 +315,11 @@ implements LaunchController {
 	}
 	
 	private void fixOverScrollModes(View rootView) {
+		
+		final int scrollViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.SCROLL_VIEW);
+		final int listViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_LIST_VIEW);
 
-		ScrollView scrollView = (ScrollView) rootView.findViewById(R.id.linearLayoutOuterScrollView);
+		ScrollView scrollView = (ScrollView) rootView.findViewById(scrollViewId);
 		
 		if (scrollView != null) {
 			
@@ -302,7 +337,7 @@ implements LaunchController {
 		}
 		
 
-		ListView listView = (ListView) rootView.findViewById(R.id.listView1);
+		ListView listView = (ListView) rootView.findViewById(listViewId);
 		
 		if (listView != null) {
 			
@@ -323,7 +358,8 @@ implements LaunchController {
 	
 	public void onExpandCollapseGroup(View senderView) {
 
-		NavigationExpandableListView listView = (NavigationExpandableListView) this.findViewById(R.id.listView1);
+		final int listViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_LIST_VIEW);
+		NavigationExpandableListView listView = (NavigationExpandableListView) this.findViewById(listViewId);
 		
 		int position = Integer.parseInt((String) senderView.getTag());
 		
@@ -347,7 +383,9 @@ implements LaunchController {
 				 
 			 } else {
 
-				 ScrollView scrollView = (ScrollView) this.findViewById(R.id.linearLayoutOuterScrollView);
+				 final int scrollViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.SCROLL_VIEW);
+				 
+				 ScrollView scrollView = (ScrollView) this.findViewById(scrollViewId);
 				 Runnable runnable = new RunnableExecuteScroll(scrollView, listView, position);
 				 this.handler.postDelayed(runnable, 0);
 			 }
@@ -363,4 +401,13 @@ implements LaunchController {
 		this.setupHomeContentView();
 	}
 
+	private static View createStartScreenView(Context context) {
+		
+		ImageView view = new ImageView(context);
+		
+		view.setScaleType(ScaleType.CENTER_CROP);
+		view.setImageResource(R.drawable.init_logo);
+		
+		return view;
+	}
 }

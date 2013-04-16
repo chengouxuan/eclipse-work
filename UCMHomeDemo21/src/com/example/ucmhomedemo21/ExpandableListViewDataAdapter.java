@@ -5,7 +5,7 @@ import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListAdapter;
@@ -40,8 +40,15 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 
 	@Override
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.navigation_expandable_list_view_common_child_view_layout, null);
+		
+		TextView view = new TextView(this.getContext());
+		view.setText("child view of an expandable list view");
+		view.setTextColor(this.getContext().getResources().getColor(R.color.common_gray_color));
+		view.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+		
+		float minHeight = this.getContext().getResources().getDimension(R.dimen.navigation_child_item_height);
+		view.setMinHeight((int)(0.5f + minHeight));
+
 		return view;
 	}
 
@@ -78,25 +85,31 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 		View view = convertView;
+
+		final int iconId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_ITEM_ICON);
+		final int textViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_ITEM_TEXT);
+		final int detailTextViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_ITEM_DETAIL_TEXT);
+		final int buttonId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_ITEM_BUTTON);
 		
-		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View theView = new NavigationExpandableListViewItemLayout(this.getContext());
 		
-		View xmlView = inflater.inflate(R.layout.navigation_expandable_list_view_group_layout, null);
-		
-		TextView textView = (TextView)xmlView.findViewById(R.id.navigationString);
+		TextView textView = (TextView)theView.findViewById(textViewId);
 		textView.setText(DataSource.navigationStrings[groupPosition]);
 		
-		ImageView icon = (ImageView)xmlView.findViewById(R.id.navigationIcon);
+		ImageView icon = (ImageView)theView.findViewById(iconId);
 		Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.glob);
 		BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
 		icon.setImageDrawable(bitmapDrawable);
 		
-		TextView detailTextView = (TextView)xmlView.findViewById(R.id.navigationDetailString);
+		TextView detailTextView = (TextView)theView.findViewById(detailTextViewId);
 		detailTextView.setText(DataSource.navigationDetailStrings[groupPosition]);
 		
-		xmlView.findViewById(R.id.button).setTag(String.format("%d", groupPosition));
+		theView.findViewById(buttonId).setTag(String.format("%d", groupPosition));
 		
-		view = xmlView;
+		float height = this.getContext().getResources().getDimension(R.dimen.navigation_item_height);
+		theView.setMinimumHeight((int)(0.5f + height));
+		
+		view = theView;
 		
 		return view;
 	}

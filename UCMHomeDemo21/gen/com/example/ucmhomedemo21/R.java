@@ -11,11 +11,14 @@ public final class R {
     public static final class attr {
     }
     public static final class bool {
-        public static final int scroll_view_fill_view_port=0x7f040000;
+        public static final int scroll_view_fill_view_port=0x7f030000;
     }
     public static final class color {
-        public static final int common_gray_color=0x7f060000;
-        public static final int no_color=0x7f060001;
+        public static final int common_gray_color=0x7f050000;
+        public static final int hot_sites_item_description_text_color=0x7f050002;
+        public static final int navigation_item_detail_text_color=0x7f050004;
+        public static final int navigation_item_text_color=0x7f050003;
+        public static final int no_color=0x7f050001;
     }
     public static final class dimen {
         /** 
@@ -23,12 +26,34 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050003;
-        public static final int common_divider_height=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f040019;
+        public static final int address_bar_common_height=0x7f040004;
+        public static final int address_bar_edit_text_left_margin=0x7f040009;
+        public static final int address_bar_edit_text_search_left_padding=0x7f040008;
+        public static final int address_bar_edit_text_search_wdith=0x7f04000a;
+        public static final int address_bar_edit_text_width=0x7f040005;
+        public static final int address_bar_magnifier_left_margin=0x7f040007;
+        public static final int address_bar_magnifier_width=0x7f040006;
+        public static final int address_bar_star_button_width=0x7f040003;
+        public static final int address_bar_width_landscape=0x7f040017;
+        public static final int bottom_bar_height=0x7f040018;
+        public static final int common_divider_height=0x7f040001;
         /**  Default screen margins, per the Android Design guidelines. 
          */
-        public static final int common_padding=0x7f050000;
-        public static final int grid_view_comon_padding=0x7f050002;
+        public static final int common_padding=0x7f040000;
+        public static final int grid_view_comon_padding=0x7f040002;
+        public static final int hot_sites_item_description_text_size=0x7f04000f;
+        public static final int hot_sites_item_height=0x7f04000c;
+        public static final int hot_sites_item_icon_height=0x7f04000e;
+        public static final int hot_sites_item_icon_width=0x7f04000d;
+        public static final int navigation_child_item_height=0x7f040010;
+        public static final int navigation_item_accessory_icon_height=0x7f040015;
+        public static final int navigation_item_accessory_icon_width=0x7f040014;
+        public static final int navigation_item_detail_text_size=0x7f040016;
+        public static final int navigation_item_height=0x7f040011;
+        public static final int navigation_item_icon_height=0x7f040013;
+        public static final int navigation_item_icon_width=0x7f040012;
+        public static final int quick_button_width=0x7f04000b;
     }
     public static final class drawable {
         public static final int add_bookmark_button=0x7f020000;
@@ -59,7 +84,7 @@ public final class R {
         public static final int quick_button_h=0x7f020019;
         public static final int quick_button_selector=0x7f02001a;
         public static final int sina=0x7f02001b;
-        public static final int start_screen_background=0x7f02001c;
+        public static final int start_screen_image=0x7f02001c;
         public static final int toolbar_1=0x7f02001d;
         public static final int toolbar_bg_horizental=0x7f02001e;
         public static final int toolbar_fs=0x7f02001f;
@@ -68,76 +93,26 @@ public final class R {
         public static final int topbar_bg_landscape=0x7f020022;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0024;
-        public static final int addressBarBackground=0x7f0a0000;
-        public static final int addressBarEditText=0x7f0a0005;
-        public static final int addressBarEditTextSearch=0x7f0a0002;
-        public static final int addressBarLayout=0x7f0a0011;
-        public static final int addressBarLine0=0x7f0a0004;
-        public static final int addressBarLine1=0x7f0a0006;
-        public static final int addressBarSearchIcon=0x7f0a0007;
-        public static final int addressBarStarButton=0x7f0a0001;
-        public static final int background=0x7f0a001a;
-        public static final int bottomBarButton=0x7f0a0009;
-        public static final int bottomBarButtonImage=0x7f0a0008;
-        public static final int bottomBarItemLayout1=0x7f0a000a;
-        public static final int bottomBarItemLayout2=0x7f0a000b;
-        public static final int bottomBarItemLayout3=0x7f0a000c;
-        public static final int bottomBarItemLayout4=0x7f0a000d;
-        public static final int bottomBarItemLayout5=0x7f0a000e;
-        public static final int bottomBarLayout=0x7f0a0016;
-        public static final int button=0x7f0a0021;
-        public static final int button1=0x7f0a0003;
-        public static final int button2=0x7f0a0023;
-        public static final int emptyTextView=0x7f0a0019;
-        public static final int gridView1=0x7f0a0013;
-        public static final int homeOuterLayout=0x7f0a0015;
-        public static final int imageView1=0x7f0a000f;
-        public static final int innerGridView=0x7f0a0018;
-        public static final int linearLayoutOuterScrollView=0x7f0a0017;
-        public static final int listView1=0x7f0a0014;
-        public static final int navigationAccessoryIcon=0x7f0a0020;
-        public static final int navigationDetailString=0x7f0a001f;
-        public static final int navigationIcon=0x7f0a001d;
-        public static final int navigationString=0x7f0a001e;
-        public static final int quickButton=0x7f0a0022;
-        public static final int quickButtonOuterLayout=0x7f0a0012;
-        public static final int siteDescriptionString=0x7f0a001c;
-        public static final int siteIcon=0x7f0a001b;
-        public static final int topBarLayout=0x7f0a0010;
-    }
-    public static final class layout {
-        public static final int address_bar_layout=0x7f030000;
-        public static final int bottom_bar_item_layout=0x7f030001;
-        public static final int bottom_bar_layout=0x7f030002;
-        public static final int home_layout_landscape=0x7f030003;
-        public static final int home_layout_portrait=0x7f030004;
-        public static final int hot_sites_layout=0x7f030005;
-        public static final int hot_sites_view_item=0x7f030006;
-        public static final int navigation_expandable_list_view_common_child_view_layout=0x7f030007;
-        public static final int navigation_expandable_list_view_group_layout=0x7f030008;
-        public static final int navigation_expandable_list_view_layout=0x7f030009;
-        public static final int quick_button_layout=0x7f03000a;
-        public static final int start_screen_layout=0x7f03000b;
+        public static final int action_settings=0x7f090000;
     }
     public static final class menu {
-        public static final int main=0x7f090000;
-        public static final int start_screen=0x7f090001;
+        public static final int main=0x7f080000;
+        public static final int start_screen=0x7f080001;
     }
     public static final class string {
-        public static final int action_settings=0x7f070001;
-        public static final int address_bar=0x7f070006;
-        public static final int app_name=0x7f070000;
-        public static final int bottom_button=0x7f070008;
-        public static final int button=0x7f070009;
-        public static final int common_button_string=0x7f07000a;
-        public static final int empty_description=0x7f070004;
-        public static final int hello_world=0x7f070002;
-        public static final int search_hint=0x7f07000c;
-        public static final int start_screen=0x7f070003;
-        public static final int table_common_text=0x7f070007;
-        public static final int title_activity_main=0x7f070005;
-        public static final int type_in_address_hint=0x7f07000b;
+        public static final int action_settings=0x7f060001;
+        public static final int address_bar=0x7f060006;
+        public static final int app_name=0x7f060000;
+        public static final int bottom_button=0x7f060008;
+        public static final int button=0x7f060009;
+        public static final int common_button_string=0x7f06000a;
+        public static final int empty_description=0x7f060004;
+        public static final int hello_world=0x7f060002;
+        public static final int search_hint=0x7f06000c;
+        public static final int start_screen=0x7f060003;
+        public static final int table_common_text=0x7f060007;
+        public static final int title_activity_main=0x7f060005;
+        public static final int type_in_address_hint=0x7f06000b;
     }
     public static final class style {
         /** 
@@ -150,10 +125,10 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f070000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f070001;
     }
 }

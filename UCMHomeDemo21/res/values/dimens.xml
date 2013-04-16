@@ -6,5 +6,35 @@
     <color name="no_color">#00000000</color>
     <dimen name="common_divider_height">1dp</dimen>
     <dimen name="grid_view_comon_padding">6dp</dimen>
-
+    
+	<dimen name="address_bar_star_button_width">37dp</dimen>
+	<dimen name="address_bar_common_height">44dp</dimen>
+	<dimen name="address_bar_edit_text_width">146dp</dimen>
+	<dimen name="address_bar_magnifier_width">15dp</dimen>
+	<dimen name="address_bar_magnifier_left_margin">5dp</dimen>
+	<dimen name="address_bar_edit_text_search_left_padding">24dp</dimen>
+	<dimen name="address_bar_edit_text_left_margin">4dp</dimen>
+	<dimen name="address_bar_edit_text_search_wdith">62dp</dimen>
+	<dimen name="quick_button_width">37dp</dimen>
+	
+	<dimen name="hot_sites_item_height">45dp</dimen>
+	<dimen name="hot_sites_item_icon_width">28dp</dimen>
+	<dimen name="hot_sites_item_icon_height">28dp</dimen>
+	<dimen name="hot_sites_item_description_text_size">12sp</dimen>
+	<color name="hot_sites_item_description_text_color">#99000000</color>
+	
+	<dimen name="navigation_child_item_height">400dp</dimen>
+	<dimen name="navigation_item_height">45dp</dimen>
+	<dimen name="navigation_item_icon_width">24dp</dimen>
+	<dimen name="navigation_item_icon_height">20dp</dimen>
+	<color name="navigation_item_text_color">#99000000</color>
+	<color name="navigation_item_detail_text_color">#77777777</color>
+	<dimen name="navigation_item_accessory_icon_width">24dp</dimen>
+	<dimen name="navigation_item_accessory_icon_height">20dp</dimen>
+	<dimen name="navigation_item_detail_text_size">13sp</dimen>
+	
+	<dimen name="address_bar_width_landscape">280dp</dimen>
+	
+	<dimen name="bottom_bar_height">40dp</dimen>
+	
 </resources>

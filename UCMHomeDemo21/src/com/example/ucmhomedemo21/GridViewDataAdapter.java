@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -64,31 +63,32 @@ implements GridItemPositionInfo {
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		View view = convertView;
+
+		final int descriptionTextId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.HOT_SITES_ITEM_DESCRIIPTION_TEXT_ID);
+		final int backgroundId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.HOT_SITES_ITEM_BACKGROUND);
+		final int iconId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.HOT_SITES_ITEM_ICON);
 		
-		LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		
-		View xmlView = inflater.inflate(R.layout.hot_sites_view_item, null);
-	
-		
-		TextView textView = (TextView) xmlView.findViewById(R.id.siteDescriptionString);
+		View theView = new HotSitesItemLayout(this.getContext());
+
+		TextView textView = (TextView) theView.findViewById(descriptionTextId);
 		textView.setText(DataSource.hotSitesStrings[position]);
 
-		ImageView icon = (ImageView)xmlView.findViewById(R.id.siteIcon);
+		ImageView icon = (ImageView)theView.findViewById(iconId);
 		Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.sina);
 		BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
 		icon.setImageDrawable(bitmapDrawable);
-		
-		GridItemBackground background = (GridItemBackground) xmlView.findViewById(R.id.background);
+
+		GridItemBackground background = (GridItemBackground) theView.findViewById(backgroundId);
 		background.setIndex(position);
 		background.setPositionInfo(this);
 		
-		view = xmlView;
+		view = theView;
 		
 		int gridViewContentWidth = this.gridView.getMeasuredWidth() - this.gridView.getPaddingLeft() - this.gridView.getPaddingRight();
 		int gridViewContentHeight = this.gridView.getMeasuredHeight() - this.gridView.getPaddingTop() - this.gridView.getPaddingBottom();
 		
-		int minHeight = (int)(gridViewContentHeight / this.getNumRows() + 0.5);
-		int minWidth = (int)(gridViewContentWidth / this.getNumColumns() + 0.5);
+		int minHeight = (int)(1.0 * gridViewContentHeight / this.getNumRows() + 0.5);
+		int minWidth = (int)(1.0 * gridViewContentWidth / this.getNumColumns() + 0.5);
 
 		view.setMinimumHeight(minHeight);
 		view.setMinimumWidth(minWidth);
