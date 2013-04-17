@@ -82,9 +82,6 @@ public class HotSitesItemLayout extends RelativeLayout {
 			textView.setLayoutParams(params);
 			outMostLayout.addView(textView);
 		}
-
-//		
-//		outMostLayout.setPadding(padding, padding, padding, padding);
 		
 		outMostLayout.setBackgroundResource(R.drawable.navigation_item_button_selector);
 	}

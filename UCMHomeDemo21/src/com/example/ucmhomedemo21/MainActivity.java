@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.ScrollView;
