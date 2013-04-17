@@ -90,7 +90,7 @@ extends RelativeLayout {
 			textView.setTextColor(resources.getColor(R.color.navigation_item_detail_text_color));
 			textView.setPadding(padding, 0, 0, 0);
 			
-			float textSize = resources.getDimension(R.dimen.navigation_item_detail_text_size);
+			float textSize = 13;
 			textView.setTextSize(textSize);
 			
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);

@@ -33,7 +33,7 @@
 	<dimen name="navigation_item_accessory_icon_height">20dp</dimen>
 	<dimen name="navigation_item_detail_text_size">13sp</dimen>
 	
-	<dimen name="address_bar_width_portrait">280dp</dimen>
+	<dimen name="address_bar_width_portrait">275dp</dimen>
 	<dimen name="address_bar_width_landscape">280dp</dimen>
 	
 	<dimen name="bottom_bar_height">40dp</dimen>

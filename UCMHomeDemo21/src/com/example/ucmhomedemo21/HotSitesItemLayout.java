@@ -69,7 +69,7 @@ public class HotSitesItemLayout extends RelativeLayout {
 			TextView textView = new TextView(this.getContext());
 			textView.setId(descriptionTextId);
 			textView.setLines(1);
-			textView.setTextSize(resources.getDimension(R.dimen.hot_sites_item_description_text_size));
+			textView.setTextSize(12);
 			textView.setTextColor(resources.getColor(R.color.hot_sites_item_description_text_color));
 			textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 			
