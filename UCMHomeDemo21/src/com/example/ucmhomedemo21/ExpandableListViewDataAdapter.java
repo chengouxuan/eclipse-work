@@ -17,6 +17,7 @@ import android.widget.TextView;
 public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 
 	private Context context;
+	private ExpandableListViewController expandableListViewController;
 	private ExpandableListView expandableListView;
 	
 	ExpandableListViewDataAdapter(Context context) {
@@ -91,7 +92,7 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 		final int detailTextViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_ITEM_DETAIL_TEXT);
 		final int buttonId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_ITEM_BUTTON);
 		
-		View theView = new NavigationExpandableListViewItemLayout(this.getContext());
+		NavigationExpandableListViewItemLayout theView = new NavigationExpandableListViewItemLayout(this.getContext());
 		
 		TextView textView = (TextView)theView.findViewById(textViewId);
 		textView.setText(DataSource.navigationStrings[groupPosition]);
@@ -108,6 +109,8 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 		
 		float height = this.getContext().getResources().getDimension(R.dimen.navigation_item_height);
 		theView.setMinimumHeight((int)(0.5f + height));
+		
+		theView.setExpandlistViewController(this.expandableListViewController);
 		
 		view = theView;
 		
@@ -165,6 +168,15 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 
 	public void setExpandableListView(ExpandableListView expandableListView) {
 		this.expandableListView = expandableListView;
+	}
+
+	public ExpandableListViewController getExpandableListViewController() {
+		return expandableListViewController;
+	}
+
+	public void setExpandableListViewController(
+			ExpandableListViewController expandableListViewController) {
+		this.expandableListViewController = expandableListViewController;
 	}
 
 }

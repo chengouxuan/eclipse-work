@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.ScrollView;
@@ -25,7 +26,8 @@ import android.graphics.drawable.Drawable;
 public class MainActivity
 
 extends Activity
-implements LaunchController {
+
+implements LaunchController, ExpandableListViewController {
 	
 	private static boolean finishLaunching = false;
 	private static boolean isInitializing = true;
@@ -113,6 +115,7 @@ implements LaunchController {
 		ExpandableListViewDataAdapter adapter = new ExpandableListViewDataAdapter(this);
 		NavigationExpandableListView listView = (NavigationExpandableListView) contentView.findViewById(listViewId);
 		this.listViewAdapter = adapter;
+		this.listViewAdapter.setExpandableListViewController(this);
 		
 		listView.setAdapter(adapter);
 		adapter.setExpandableListView(listView);
@@ -413,5 +416,10 @@ implements LaunchController {
 		view.setImageResource(R.drawable.init_logo);
 		
 		return view;
+	}
+
+	@Override
+	public void groupClicked(View senderView) {
+		this.onExpandCollapseGroup(senderView);
 	}
 }

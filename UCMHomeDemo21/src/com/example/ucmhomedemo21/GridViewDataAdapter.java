@@ -23,6 +23,8 @@ implements GridItemPositionInfo {
 	private Context context;
 	private int numColumns;
 	private int itemMinimalHeight;
+
+	private ExpandableListViewController expandableListViewController;
 	
 	public GridViewDataAdapter(Context context) {
 		this.setContext(context);
@@ -170,6 +172,15 @@ implements GridItemPositionInfo {
 
 	public void setItemMinimumHeight(int itemMinimalHeight) {
 		this.itemMinimalHeight = itemMinimalHeight;
+	}
+
+	public ExpandableListViewController getExpandableListViewController() {
+		return expandableListViewController;
+	}
+
+	public void setExpandableListViewController(
+			ExpandableListViewController expandableListViewController) {
+		this.expandableListViewController = expandableListViewController;
 	}
 
 }
