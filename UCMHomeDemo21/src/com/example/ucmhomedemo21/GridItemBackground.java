@@ -66,10 +66,12 @@ public class GridItemBackground extends View {
 		 super.onDraw(canvas);
 		 
 		 if (this.positionInfo != null && !this.positionInfo.isLeftMostItem(this.index)) {
+			 
 			 canvas.drawLine(0, 0, 0, this.getHeight(), this.paint);
 		 }
 		 
 		 if (this.positionInfo != null && !this.positionInfo.isTopMostItem(this.index)) {
+			 
 			 canvas.drawLine(0, 0, this.getWidth(), 0, this.paint);
 		 }
 	 }

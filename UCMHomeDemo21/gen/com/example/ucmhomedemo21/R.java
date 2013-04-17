@@ -26,7 +26,7 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040019;
+        public static final int activity_horizontal_margin=0x7f04001a;
         public static final int address_bar_common_height=0x7f040004;
         public static final int address_bar_edit_text_left_margin=0x7f040009;
         public static final int address_bar_edit_text_search_left_padding=0x7f040008;
@@ -35,15 +35,16 @@ public final class R {
         public static final int address_bar_magnifier_left_margin=0x7f040007;
         public static final int address_bar_magnifier_width=0x7f040006;
         public static final int address_bar_star_button_width=0x7f040003;
-        public static final int address_bar_width_landscape=0x7f040017;
-        public static final int bottom_bar_height=0x7f040018;
+        public static final int address_bar_width_landscape=0x7f040018;
+        public static final int address_bar_width_portrait=0x7f040017;
+        public static final int bottom_bar_height=0x7f040019;
         public static final int common_divider_height=0x7f040001;
         /**  Default screen margins, per the Android Design guidelines. 
          */
         public static final int common_padding=0x7f040000;
         public static final int grid_view_comon_padding=0x7f040002;
         public static final int hot_sites_item_description_text_size=0x7f04000f;
-        public static final int hot_sites_item_height=0x7f04000c;
+        public static final int hot_sites_item_height_portrait=0x7f04000c;
         public static final int hot_sites_item_icon_height=0x7f04000e;
         public static final int hot_sites_item_icon_width=0x7f04000d;
         public static final int navigation_child_item_height=0x7f040010;

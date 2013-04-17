@@ -124,6 +124,8 @@ implements LaunchController {
 		gridViewDataAdapter.setGridView(gridView);
 				
 		if (isLandscape) {
+			
+			gridViewDataAdapter.setItemMinimumHeight(0);
 
 			listView.setScrollable(true);
 			
@@ -135,7 +137,9 @@ implements LaunchController {
 			this.setupImageLandscape(contentView);
 			
 		} else {
-			
+
+			float height = this.getResources().getDimension(R.dimen.hot_sites_item_height_portrait);
+			gridViewDataAdapter.setItemMinimumHeight((int)(0.5f + height));
 			listView.setScrollable(false);
 			
 			gridView.setScrollable(false);

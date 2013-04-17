@@ -32,6 +32,7 @@ public class HomeLayoutPortrait extends RelativeLayout {
 		final int bottomBarId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR);
 		final int listViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_LIST_VIEW);
 		final int hotSitesViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.HOT_SITES_LIST_VIEW);
+		final int editTextSearchId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.ADDRESS_BAR_EDIT_TEXT_SEARCH);
 		
 		Resources resources = this.getContext().getResources();
 		
@@ -58,7 +59,8 @@ public class HomeLayoutPortrait extends RelativeLayout {
 		{
 			AddressBarLayout addressBarLayout = new AddressBarLayout(this.getContext());
 			addressBarLayout.setId(addressBarId);
-			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+			float width = resources.getDimension(R.dimen.address_bar_width_portrait);
+			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int)(0.5f + width), LayoutParams.WRAP_CONTENT);
 			addressBarLayout.setLayoutParams(params);
 			topBarLayout.addView(addressBarLayout);
 		}
@@ -67,7 +69,7 @@ public class HomeLayoutPortrait extends RelativeLayout {
 			QuickButtonLayout quickButtonLayout = new QuickButtonLayout(this.getContext());
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 			params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
-//			params.addRule(RelativeLayout.RIGHT_OF, addressBarId);
+			params.addRule(RelativeLayout.RIGHT_OF, editTextSearchId);
 			
 			quickButtonLayout.setLayoutParams(params);
 			topBarLayout.addView(quickButtonLayout);
@@ -78,6 +80,7 @@ public class HomeLayoutPortrait extends RelativeLayout {
 		
 		
 		ScrollView scrollView = new ScrollView(this.getContext());
+		scrollView.setId(GlobalViewIds.getIdOf(GlobalViewIds.Ids.SCROLL_VIEW));
 		
 		{
 			scrollView.setFadingEdgeLength(0);
@@ -107,7 +110,7 @@ public class HomeLayoutPortrait extends RelativeLayout {
 			hotSites.setCacheColorHint(resources.getColor(R.color.no_color));
 			hotSites.setSelector(resources.getDrawable(R.color.no_color));
 			
-			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 			
 			hotSites.setLayoutParams(params);
 			linearLayoutInsideScrollView.addView(hotSites);

@@ -22,6 +22,7 @@ implements GridItemPositionInfo {
 	
 	private Context context;
 	private int numColumns;
+	private int itemMinimalHeight;
 	
 	public GridViewDataAdapter(Context context) {
 		this.setContext(context);
@@ -87,11 +88,26 @@ implements GridItemPositionInfo {
 		int gridViewContentWidth = this.gridView.getMeasuredWidth() - this.gridView.getPaddingLeft() - this.gridView.getPaddingRight();
 		int gridViewContentHeight = this.gridView.getMeasuredHeight() - this.gridView.getPaddingTop() - this.gridView.getPaddingBottom();
 		
+		if (gridViewContentWidth < 0) {
+			gridViewContentWidth = 0;
+		}
+		
+		if (gridViewContentHeight < 0) {
+			gridViewContentHeight = 0;
+		}
+		
 		int minHeight = (int)(1.0 * gridViewContentHeight / this.getNumRows() + 0.5);
 		int minWidth = (int)(1.0 * gridViewContentWidth / this.getNumColumns() + 0.5);
-
+		
+		if (this.itemMinimalHeight > 0) {
+			minHeight = this.itemMinimalHeight;
+		}
+		
 		view.setMinimumHeight(minHeight);
 		view.setMinimumWidth(minWidth);
+		
+		background.setMinimumHeight(minHeight);
+		background.setMinimumWidth(minWidth);
 		
 		return view;
 	}
@@ -146,6 +162,14 @@ implements GridItemPositionInfo {
 		int columns = this.getNumColumns();
 		int rows = this.getNumRows();
 		return (index / columns) == (rows - 1);
+	}
+
+	public int getItemMinimumHeight() {
+		return this.itemMinimalHeight;
+	}
+
+	public void setItemMinimumHeight(int itemMinimalHeight) {
+		this.itemMinimalHeight = itemMinimalHeight;
 	}
 
 }

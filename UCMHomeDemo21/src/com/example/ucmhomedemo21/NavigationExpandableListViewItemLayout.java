@@ -55,6 +55,7 @@ public class NavigationExpandableListViewItemLayout extends RelativeLayout {
 			
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams((int)(0.5f + width), (int)(0.5f + height));
 			params.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
+			params.setMargins(padding, 0, 0, 0);
 			
 			icon.setLayoutParams(params);
 			outMostLayout.addView(icon);
@@ -121,12 +122,13 @@ public class NavigationExpandableListViewItemLayout extends RelativeLayout {
 			button.setId(buttonId);
 			button.setBackgroundResource(R.drawable.navigation_item_button_selector);
 			
-			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+			float height = this.getContext().getResources().getDimension(R.dimen.navigation_item_height);
+			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, (int)(0.5f + height));
 			
 			button.setLayoutParams(params);
 			outMostLayout.addView(button);
 		}
 		
-		outMostLayout.setPadding(padding, padding, padding, padding);
+//		outMostLayout.setPadding(padding, padding, padding, padding);
 	}
 }

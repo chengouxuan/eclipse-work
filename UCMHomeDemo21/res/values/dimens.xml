@@ -17,7 +17,7 @@
 	<dimen name="address_bar_edit_text_search_wdith">62dp</dimen>
 	<dimen name="quick_button_width">37dp</dimen>
 	
-	<dimen name="hot_sites_item_height">45dp</dimen>
+	<dimen name="hot_sites_item_height_portrait">45dp</dimen>
 	<dimen name="hot_sites_item_icon_width">28dp</dimen>
 	<dimen name="hot_sites_item_icon_height">28dp</dimen>
 	<dimen name="hot_sites_item_description_text_size">12sp</dimen>
@@ -33,6 +33,7 @@
 	<dimen name="navigation_item_accessory_icon_height">20dp</dimen>
 	<dimen name="navigation_item_detail_text_size">13sp</dimen>
 	
+	<dimen name="address_bar_width_portrait">280dp</dimen>
 	<dimen name="address_bar_width_landscape">280dp</dimen>
 	
 	<dimen name="bottom_bar_height">40dp</dimen>
