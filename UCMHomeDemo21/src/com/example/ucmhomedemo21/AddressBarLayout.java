@@ -95,6 +95,7 @@ public class AddressBarLayout extends RelativeLayout {
 			
 			EditText editText = new EditText(this.getContext());
 			editText.setId(addressBarEditTextId);
+			editText.setMaxLines(1);
 			float leftPadding = this.getContext().getResources().getDimension(R.dimen.common_padding);
 			editText.setPadding((int)(0.5f + leftPadding), 0, 0, 0);
 			editText.setBackgroundResource(R.drawable.address_bar_edit_text_selector);
@@ -148,6 +149,7 @@ public class AddressBarLayout extends RelativeLayout {
 			// setup edit text for searching
 			
 			EditText editText = new EditText(this.getContext());
+			editText.setMaxLines(1);
 			float leftPadding = this.getContext().getResources().getDimension(R.dimen.address_bar_edit_text_search_left_padding);
 			float rightPadding = this.getContext().getResources().getDimension(R.dimen.common_padding);
 			editText.setPadding((int)(0.5f + leftPadding), 0, (int)(0.5f + rightPadding), 0);

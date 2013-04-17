@@ -3,13 +3,18 @@ package com.example.ucmhomedemo21;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class NavigationExpandableListViewItemLayout extends RelativeLayout {
+public class NavigationExpandableListViewItemLayout
+
+extends RelativeLayout {
+
+	private ExpandableListViewController expandlistViewController;
 
 	public NavigationExpandableListViewItemLayout(Context context) {
 		super(context);
@@ -121,6 +126,14 @@ public class NavigationExpandableListViewItemLayout extends RelativeLayout {
 			Button button = new Button(this.getContext());
 			button.setId(buttonId);
 			button.setBackgroundResource(R.drawable.navigation_item_button_selector);
+			button.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (expandlistViewController != null) {
+						expandlistViewController.groupClicked(v);
+					}
+				}
+			});
 			
 			float height = this.getContext().getResources().getDimension(R.dimen.navigation_item_height);
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, (int)(0.5f + height));
@@ -130,5 +143,13 @@ public class NavigationExpandableListViewItemLayout extends RelativeLayout {
 		}
 		
 //		outMostLayout.setPadding(padding, padding, padding, padding);
+	}
+
+	public ExpandableListViewController getExpandlistViewController() {
+		return expandlistViewController;
+	}
+
+	public void setExpandlistViewController(ExpandableListViewController expandlistViewController) {
+		this.expandlistViewController = expandlistViewController;
 	}
 }
