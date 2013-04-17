@@ -142,7 +142,6 @@ extends RelativeLayout {
 			outMostLayout.addView(button);
 		}
 		
-//		outMostLayout.setPadding(padding, padding, padding, padding);
 	}
 
 	public ExpandableListViewController getExpandlistViewController() {
