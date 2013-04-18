@@ -42,7 +42,6 @@ public class HotSitesItemLayout extends RelativeLayout {
 			GridItemBackground background = new GridItemBackground(this.getContext());
 			background.setId(backgroundId);
 			
-//			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 			RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 			
 			background.setLayoutParams(params);
