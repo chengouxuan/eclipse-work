@@ -7,17 +7,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
-public class MainActivity extends Activity {
+public class MainActivity
+
+extends Activity
+
+implements UCMMenuDataSource {
 	
-	private UCMMenu menu;
+	private UCMMenu mMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-//		ViewPager viewPager = new ViewPager(this);
-//		viewPager.setAdapter(new UCMMenuViewPagerAdapter(this));
-//		setContentView(viewPager);
 	}
 
 	@Override
@@ -28,11 +29,41 @@ public class MainActivity extends Activity {
 	}
 
 	public void showPopupWindow(View senderView) {
-		if (this.menu == null) {
-			this.menu = new UCMMenu(this);
+		if (mMenu == null) {
+			mMenu = new UCMMenu(this, this);
 		}
 
 		View anchorView = this.findViewById(R.id.textView1);
-		menu.show(anchorView);
+		mMenu.show(anchorView);
+	}
+
+	@Override
+	public String getPageTitle(int pagePosition) {
+		return String.format("Page %d", pagePosition);
+	}
+
+	@Override
+	public int getItemIconResourceId(int pagePosition, int itemPosition) {
+		return R.drawable.address_input_list_safe;
+	}
+
+	@Override
+	public String getItemTitle(int pagePosition, int itemPosition) {
+		return String.format("Item %d", itemPosition);
+	}
+
+	@Override
+	public int getPageCount() {
+		return 3;
+	}
+
+	@Override
+	public int getItemCount(int pagePosition) {
+		return 8;
+	}
+
+	@Override
+	public int getColumnCount(int pagePosition) {
+		return 4;
 	}
 }
