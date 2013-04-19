@@ -1,6 +1,5 @@
 package com.example.ucmmenudemo;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 import android.content.Context;
@@ -10,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -22,6 +22,7 @@ public class UCMMenu {
 	
 	private ViewPager mViewPager;
 	private LinearLayout mHeadersLayout;
+	private View mHeaderViews[];
 	private PopupWindow mPopupWindow;
 	private LinearLayout mContainViewRoot;
 	private UCMMenuDataSource mDataSource;
@@ -62,18 +63,19 @@ public class UCMMenu {
 		mPopupWindow = new PopupWindow(mContext);
 		mPopupWindow.setWidth(Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_width));
 		mPopupWindow.setHeight(Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_height));
+		mPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
 		mPopupWindow.setAnimationStyle(R.style.Animation);
 		
 		
 		mContainViewRoot = new LinearLayout(mContext);
 		mContainViewRoot.setOrientation(LinearLayout.VERTICAL);
-		mContainViewRoot.setBackgroundResource(R.drawable.menu_select);
+		mContainViewRoot.setBackgroundResource(R.drawable.frame_multi_window_mid);
 		
 		
 		mPopupWindow.setContentView(mContainViewRoot);
 		
 		
-		{	
+		{
 			mHeadersLayout = new LinearLayout(mContext);
 			mHeadersLayout.setOrientation(LinearLayout.HORIZONTAL);
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, HEADERS_LAYOUT_WEIGHT);
@@ -86,9 +88,18 @@ public class UCMMenu {
 				
 				TextView textView = new TextView(mContext);
 				textView.setText(mDataSource.getPageTitle(i));
+				textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 				textView.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.FILL_PARENT, 1));
 				mHeadersLayout.addView(textView);
+				
+				if (mHeaderViews == null) {
+					mHeaderViews = new View[pageCount];
+				}
+				
+				mHeaderViews[i] = textView;
 			}
+			
+			this.highlightTitle(0);
 		}
 		
 		{
@@ -100,16 +111,44 @@ public class UCMMenu {
 			seperatorView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, height));
 			mContainViewRoot.addView(seperatorView);
 		}
-		
-		
-		{
-			mViewPagerAdapter = new UCMMenuViewPagerAdapter(mContext, mDataSource);
+
+		mViewPagerAdapter = new UCMMenuViewPagerAdapter(mContext, mDataSource);
 			
+		{
 			mViewPager = new ViewPager(mContext);
 			mViewPager.setAdapter(mViewPagerAdapter);
+			
+			mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+				
+				@Override
+				public void onPageSelected(int position) {
+					highlightTitle(position);
+				}
+
+				@Override
+				public void onPageScrolled(int arg0, float arg1, int arg2) {}
+
+				@Override
+				public void onPageScrollStateChanged(int arg0) {}
+			});
+			
 			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, VIEW_PAGER_WEIGHT);
 			mViewPager.setLayoutParams(params);
 			mContainViewRoot.addView(mViewPager);
+		}
+	}
+	
+	private void highlightTitle(int position) {
+		
+		for (int i = 0; i < mHeaderViews.length; ++i) {
+			
+			TextView textView = (TextView)(mHeaderViews[i]);
+			
+			if (i == position) {
+				textView.setTextColor(mContext.getResources().getColor(R.color.white_color));
+			} else {
+				textView.setTextColor(mContext.getResources().getColor(R.color.gray_color));
+			}
 		}
 	}
 }

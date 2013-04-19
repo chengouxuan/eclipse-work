@@ -4,10 +4,13 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView;
+import android.widget.GridView;
 import android.widget.TextView;
 
 public class UCMMenuViewPagerAdapter
@@ -15,7 +18,6 @@ public class UCMMenuViewPagerAdapter
 extends PagerAdapter {
 	
 	private Context mContext;
-	
 	private UCMMenuDataSource mDataSource;
 	
 	public UCMMenuViewPagerAdapter(Context context, UCMMenuDataSource dataSource) {
@@ -37,18 +39,21 @@ extends PagerAdapter {
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 
-		TextView textView = new TextView(mContext);
-		textView.setText(String.format("page %d", position));
+		GridView gridView = new GridView(mContext);
+		gridView.setAdapter(new UCMMenuGridViewAdapter(mContext, mDataSource, position));
+		gridView.setNumColumns(mDataSource.getColumnCount(position));
+		gridView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+//		gridView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		
 		if (container != null) {
-			container.addView(textView);
+			container.addView(gridView);
 		}
 		
-		return textView;
+		return gridView;
 	}
 	
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
-		;
+		// TODO Auto-generated method stub
 	}
 }

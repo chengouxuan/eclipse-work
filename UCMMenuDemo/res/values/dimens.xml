@@ -6,11 +6,14 @@
     <color name="red_color">#ffff0000</color>
     <color name="gray_color">#ff777777</color>
     <color name="green_color">#ff00ff00</color>
+    <color name="no_color">#00000000</color>
+    <color name="white_color">#ffffffff</color>
     <dimen name="menu_slider_width">20dp</dimen>
     <dimen name="menu_slider_height">3dp</dimen>
-    <dimen name="menu_height">160dp</dimen>
-    <dimen name="menu_width">240dp</dimen>
+    <dimen name="menu_height">190dp</dimen>
+    <dimen name="menu_width">260dp</dimen>
     <dimen name="menu_seperator_padding">6dp</dimen>
     <dimen name="menu_seperator_height">4dp</dimen>
-
+    <dimen name="menu_item_minimal_height">55dp</dimen>
+    
 </resources>
