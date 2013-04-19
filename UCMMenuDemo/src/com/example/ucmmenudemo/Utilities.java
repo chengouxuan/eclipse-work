@@ -2,7 +2,7 @@ package com.example.ucmmenudemo;
 
 import android.content.res.Resources;
 
-public class Utilities {
+public class Utilities extends Object {
 
 	public Utilities() {
 		// TODO Auto-generated constructor stub

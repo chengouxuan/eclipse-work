@@ -1,11 +1,12 @@
 package com.example.ucmmenudemo;
 
+import com.example.ucmmenudemo.UCMMenu.OnItemClickListener;
+
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -20,12 +21,18 @@ public class UCMMenuGridViewAdapter extends BaseAdapter {
 	UCMMenuDataSource mDataSource;
 	int mPagePosition;
 	
-	public UCMMenuGridViewAdapter(Context context, UCMMenuDataSource dataSource, int pagePosition) {
+	public UCMMenuGridViewAdapter(Context context, UCMMenuDataSource dataSource, int pagePosition, OnItemClickListener onItemClickListener) {
 		mContext = context;
 		mDataSource = dataSource;
 		mPagePosition = pagePosition;
+		mOnItemClickListener = onItemClickListener;
 	}
-
+	
+	public interface OnItemClickListener {
+		abstract public void onItemClick(int pagePosition, int itemPosition);
+	}
+	
+	private OnItemClickListener mOnItemClickListener;
 	@Override
 	public int getCount() {
 		return mDataSource.getItemCount(mPagePosition);
@@ -42,7 +49,7 @@ public class UCMMenuGridViewAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int itemPosition, View convertView, ViewGroup parent) {
 		
 		RelativeLayout layout = new RelativeLayout(mContext);
 		layout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
@@ -53,6 +60,17 @@ public class UCMMenuGridViewAdapter extends BaseAdapter {
 		final int titleId = 10004;
 		
 		ImageButton button = new ImageButton(mContext);
+		
+		button.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (mOnItemClickListener != null) {
+					mOnItemClickListener.onItemClick(mPagePosition, itemPosition);
+				}
+			}
+		});
+		
 		button.setBackgroundResource(R.drawable.item_button_selector);
 		RelativeLayout.LayoutParams buttonLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 		buttonLayoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, titleId);
@@ -62,13 +80,13 @@ public class UCMMenuGridViewAdapter extends BaseAdapter {
 		ImageView icon = new ImageView(mContext);
 		icon.setId(iconId);
 		icon.setScaleType(ScaleType.CENTER_INSIDE);
-		icon.setImageResource(mDataSource.getItemIconResourceId(mPagePosition, position));
+		icon.setImageResource(mDataSource.getItemIconResourceId(mPagePosition, itemPosition));
 		icon.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 		layout.addView(icon);
 		
 		TextView title = new TextView(mContext);
 		title.setId(titleId);
-		title.setText(mDataSource.getItemTitle(mPagePosition, position));
+		title.setText(mDataSource.getItemTitle(mPagePosition, itemPosition));
 		title.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 		RelativeLayout.LayoutParams titleLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 		titleLayoutParams.addRule(RelativeLayout.BELOW, iconId);

@@ -19,11 +19,17 @@ extends PagerAdapter {
 	
 	private Context mContext;
 	private UCMMenuDataSource mDataSource;
+	private UCMMenuGridViewAdapter.OnItemClickListener mOnItemClickListener;
 	
-	public UCMMenuViewPagerAdapter(Context context, UCMMenuDataSource dataSource) {
+	public UCMMenuViewPagerAdapter(Context context, UCMMenuDataSource dataSource, UCMMenuGridViewAdapter.OnItemClickListener onItemClickListener) {
 		super();
 		mContext = context;
 		mDataSource = dataSource;
+		mOnItemClickListener = onItemClickListener;
+	}
+
+	private int getViewId(int pagePosition) {
+		return pagePosition + 1007;
 	}
 
 	@Override
@@ -40,12 +46,13 @@ extends PagerAdapter {
 	public Object instantiateItem(ViewGroup container, int position) {
 
 		GridView gridView = new GridView(mContext);
-		gridView.setAdapter(new UCMMenuGridViewAdapter(mContext, mDataSource, position));
+		gridView.setAdapter(new UCMMenuGridViewAdapter(mContext, mDataSource, position, mOnItemClickListener));
 		gridView.setNumColumns(mDataSource.getColumnCount(position));
 		gridView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 //		gridView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		
 		if (container != null) {
+			gridView.setId(this.getViewId(position));
 			container.addView(gridView);
 		}
 		
@@ -54,6 +61,9 @@ extends PagerAdapter {
 	
 	@Override
 	public void destroyItem(ViewGroup container, int position, Object object) {
-		// TODO Auto-generated method stub
+		if (container != null) {
+			View view = container.findViewById(this.getViewId(position));
+			container.removeView(view);
+		}
 	}
 }

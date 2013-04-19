@@ -16,7 +16,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class UCMMenu {
+public class UCMMenu extends Object {
 
 	private Context mContext;
 	
@@ -25,33 +25,29 @@ public class UCMMenu {
 	private View mHeaderViews[];
 	private PopupWindow mPopupWindow;
 	private LinearLayout mContainViewRoot;
+	
 	private UCMMenuDataSource mDataSource;
 	
 	private PagerAdapter mViewPagerAdapter;
+	
+	public interface OnItemClickListener {
+		abstract public void onItemClick(int pagePosition, int itemPosition);
+	}
+
+	private OnItemClickListener mOnItemClickListener;
 
 	private final static float VIEW_PAGER_WEIGHT = 3;
 	private final static float HEADERS_LAYOUT_WEIGHT = 1;
 	
-	public UCMMenu(Context context, UCMMenuDataSource dataSource) {
+	public UCMMenu(Context context, UCMMenuDataSource dataSource, OnItemClickListener onItemClickListener) {
 		mContext = context;
 		mDataSource = dataSource;
+		mOnItemClickListener = onItemClickListener;
 	}
 	
 	public void show(View anchorView) {
-
 		setupViewsIfNeeded();
-		
 		mPopupWindow.showAtLocation(anchorView, Gravity.BOTTOM, anchorView.getLeft(), anchorView.getTop());
-	}
-	
-	public void setWidth(int width) {
-		this.setupViewsIfNeeded();
-		mPopupWindow.setWidth(width);
-	}
-	
-	public void setHeight(int height) {
-		this.setupViewsIfNeeded();
-		mPopupWindow.setHeight(height);
 	}
 	
 	private void setupViewsIfNeeded() {
@@ -90,6 +86,17 @@ public class UCMMenu {
 				textView.setText(mDataSource.getPageTitle(i));
 				textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 				textView.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.FILL_PARENT, 1));
+				
+				textView.setTag(String.format("%d", i));
+				textView.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View view) {
+						int pagePosition = Integer.parseInt((String)view.getTag());
+						selectPage(pagePosition);
+					}
+				});
+				
 				mHeadersLayout.addView(textView);
 				
 				if (mHeaderViews == null) {
@@ -112,8 +119,16 @@ public class UCMMenu {
 			mContainViewRoot.addView(seperatorView);
 		}
 
-		mViewPagerAdapter = new UCMMenuViewPagerAdapter(mContext, mDataSource);
+		mViewPagerAdapter = new UCMMenuViewPagerAdapter(mContext, mDataSource, new UCMMenuGridViewAdapter.OnItemClickListener() {
 			
+			@Override
+			public void onItemClick(int pagePosition, int itemPosition) {
+				if (mOnItemClickListener != null) {
+					mOnItemClickListener.onItemClick(pagePosition, itemPosition);
+				}
+			}
+		});
+		
 		{
 			mViewPager = new ViewPager(mContext);
 			mViewPager.setAdapter(mViewPagerAdapter);
@@ -149,6 +164,13 @@ public class UCMMenu {
 			} else {
 				textView.setTextColor(mContext.getResources().getColor(R.color.gray_color));
 			}
+		}
+	}
+	
+	private void selectPage(int pagePosition) {
+		if (pagePosition != mViewPager.getCurrentItem()) {
+			mViewPager.setCurrentItem(pagePosition, true);
+			this.highlightTitle(pagePosition);
 		}
 	}
 }

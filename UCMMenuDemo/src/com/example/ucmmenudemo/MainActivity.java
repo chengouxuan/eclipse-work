@@ -1,5 +1,7 @@
 package com.example.ucmmenudemo;
 
+import com.example.ucmmenudemo.UCMMenu.OnItemClickListener;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v4.view.ViewPager;
@@ -11,7 +13,7 @@ public class MainActivity
 
 extends Activity
 
-implements UCMMenuDataSource {
+implements UCMMenuDataSource, OnItemClickListener {
 	
 	private UCMMenu mMenu;
 
@@ -30,7 +32,7 @@ implements UCMMenuDataSource {
 
 	public void showPopupWindow(View senderView) {
 		if (mMenu == null) {
-			mMenu = new UCMMenu(this, this);
+			mMenu = new UCMMenu(this, this, this);
 		}
 
 		View anchorView = this.findViewById(R.id.textView1);
@@ -65,5 +67,10 @@ implements UCMMenuDataSource {
 	@Override
 	public int getColumnCount(int pagePosition) {
 		return 4;
+	}
+
+	@Override
+	public void onItemClick(int pagePosition, int itemPosition) {
+		Log.i("ucmmenudemo", String.format("page %d, item %d clicked", pagePosition, itemPosition));
 	}
 }
