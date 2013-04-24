@@ -4,7 +4,6 @@ import com.example.ucmmenudemo.UCMMenu.OnItemClickListener;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -31,12 +30,17 @@ implements UCMMenuDataSource, OnItemClickListener {
 	}
 
 	public void showPopupWindow(View senderView) {
+		
 		if (mMenu == null) {
 			mMenu = new UCMMenu(this, this, this);
 		}
 
-		View anchorView = this.findViewById(R.id.textView1);
-		mMenu.show(anchorView);
+		if (! mMenu.isShowing()) {
+			View anchorView = this.findViewById(R.id.textView1);
+			mMenu.show(anchorView);
+		} else {
+			mMenu.dismiss();
+		}
 	}
 
 	@Override

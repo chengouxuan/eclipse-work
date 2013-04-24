@@ -1,14 +1,11 @@
 package com.example.ucmmenudemo;
 
-import com.example.ucmmenudemo.UCMMenu.OnItemClickListener;
-
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;

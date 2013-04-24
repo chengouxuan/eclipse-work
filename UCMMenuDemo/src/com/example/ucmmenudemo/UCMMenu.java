@@ -1,19 +1,16 @@
 package com.example.ucmmenudemo;
 
-import java.util.Arrays;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class UCMMenu extends Object {
@@ -25,6 +22,8 @@ public class UCMMenu extends Object {
 	private View mHeaderViews[];
 	private PopupWindow mPopupWindow;
 	private LinearLayout mContainViewRoot;
+	
+	private UCMMenuSliderView mSliderView;
 	
 	private UCMMenuDataSource mDataSource;
 	
@@ -45,9 +44,24 @@ public class UCMMenu extends Object {
 		mOnItemClickListener = onItemClickListener;
 	}
 	
+	public boolean isShowing() {
+		return (mPopupWindow != null && mPopupWindow.isShowing());
+	}
+	
 	public void show(View anchorView) {
+		
 		setupViewsIfNeeded();
-		mPopupWindow.showAtLocation(anchorView, Gravity.BOTTOM, anchorView.getLeft(), anchorView.getTop());
+		 
+		int x = this.getRelativeLeft(anchorView);
+		int y = this.getRelativeTop(anchorView);
+		
+		mPopupWindow.showAtLocation(anchorView, Gravity.LEFT | Gravity.TOP, x, y - mPopupWindow.getHeight());
+	}
+	
+	public void dismiss() {
+		if (mPopupWindow != null) {
+			mPopupWindow.dismiss();
+		}
 	}
 	
 	private void setupViewsIfNeeded() {
@@ -110,13 +124,18 @@ public class UCMMenu extends Object {
 		}
 		
 		{
-			View seperatorView = new View(mContext);
-			seperatorView.setBackgroundResource(R.drawable.list_divider);
+			mSliderView = new UCMMenuSliderView(
+					mContext,
+					Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_slider_width),
+					Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_slider_height)
+					);
+			
+			mSliderView.setBackgroundResource(R.drawable.list_divider);
 			int padding = Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_seperator_padding);
-			seperatorView.setPadding(padding, 0, 0, padding);
+			mSliderView.setPadding(padding, 0, padding, 0);
 			int height = Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_seperator_height);
-			seperatorView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, height));
-			mContainViewRoot.addView(seperatorView);
+			mSliderView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, height));
+			mContainViewRoot.addView(mSliderView);
 		}
 
 		mViewPagerAdapter = new UCMMenuViewPagerAdapter(mContext, mDataSource, new UCMMenuGridViewAdapter.OnItemClickListener() {
@@ -141,7 +160,18 @@ public class UCMMenu extends Object {
 				}
 
 				@Override
-				public void onPageScrolled(int arg0, float arg1, int arg2) {}
+				public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+					
+					Log.i("ucmmenudemo", String.format("onPageScrolled, position = %d, positioinOffset = %f, positionOffsetPixels = %d",
+							position, positionOffset, positionOffsetPixels));
+					
+					if (mSliderView != null) {
+						float positionRate = (positionOffset + position) / mViewPagerAdapter.getCount();
+						mSliderView.setPositionRate(positionRate);
+						
+						Log.i("ucmmenudemo", String.format("positionRate = %f", positionRate));
+					}
+				}
 
 				@Override
 				public void onPageScrollStateChanged(int arg0) {}
@@ -172,5 +202,21 @@ public class UCMMenu extends Object {
 			mViewPager.setCurrentItem(pagePosition, true);
 			this.highlightTitle(pagePosition);
 		}
+	}
+	
+	private int getRelativeLeft(View myView) {
+	    if (myView.getParent() == myView.getRootView()) {
+	    	return myView.getLeft();
+	    } else {
+	    	return myView.getLeft() + getRelativeLeft((View) myView.getParent());
+	    }
+	}
+
+	private int getRelativeTop(View myView) {
+	    if (myView.getParent() == myView.getRootView()) {
+	    	return myView.getTop();
+	    } else {
+	    	return myView.getTop() + getRelativeTop((View) myView.getParent());
+	    }
 	}
 }

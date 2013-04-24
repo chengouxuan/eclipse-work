@@ -2,16 +2,10 @@ package com.example.ucmmenudemo;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.AbsListView;
 import android.widget.GridView;
-import android.widget.TextView;
 
 public class UCMMenuViewPagerAdapter
 
