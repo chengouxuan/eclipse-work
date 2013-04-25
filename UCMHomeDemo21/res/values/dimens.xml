@@ -38,4 +38,19 @@
 	
 	<dimen name="bottom_bar_height">40dp</dimen>
 	
+	<dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <color name="red_color">#ffff0000</color>
+    <color name="gray_color">#ff777777</color>
+    <color name="green_color">#ff00ff00</color>
+    <color name="white_color">#ffffffff</color>
+    <dimen name="menu_slider_width">60dp</dimen>
+    <dimen name="menu_slider_height">4dp</dimen>
+    <dimen name="menu_height">200dp</dimen>
+    <dimen name="menu_width">320dp</dimen>
+    <dimen name="menu_seperator_margin">1dp</dimen>
+    <dimen name="menu_seperator_height">4dp</dimen>
+    <dimen name="menu_item_minimal_height">62dp</dimen>
+    <dimen name="menu_content_padding">10dp</dimen>
+    
 </resources>

@@ -39,6 +39,8 @@ implements LaunchController, ExpandableListViewController {
 	
 	private ExpandableListViewDataAdapter listViewAdapter;
 	
+	private UCMMenu menu;
+	
 	public MainActivity() {
 		this.listViewAdapter = null;
 		this.handler = null;
@@ -235,6 +237,12 @@ implements LaunchController, ExpandableListViewController {
 		{
 			Button button = (Button) rootView.findViewById(itemId3).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_portrait);
+			button.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					showMenu(v);
+				}
+			});
 		}
 		{
 			Button button = (Button) rootView.findViewById(itemId4).findViewById(buttonId);
@@ -420,5 +428,23 @@ implements LaunchController, ExpandableListViewController {
 	@Override
 	public void groupClicked(View senderView) {
 		this.onExpandCollapseGroup(senderView);
+	}
+
+	private void showMenu(View anchorView) {
+		
+		if (this.menu == null) {
+			this.menu = new UCMMenu(this, new UCMMenuDefaultDataSource(), new UCMMenu.OnItemClickListener() {
+				@Override
+				public void onItemClick(int pagePosition, int itemPosition) {
+					Log.i("xxx", String.format("item %d at page %d clicked", itemPosition, pagePosition));
+				}
+			});
+		}
+
+		if (this.menu.isShowing()) {
+			this.menu.dismiss();
+		} else {
+			this.menu.show(anchorView);
+		}
 	}
 }
