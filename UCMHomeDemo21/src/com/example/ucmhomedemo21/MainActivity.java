@@ -164,17 +164,6 @@ implements LaunchController, ExpandableListViewController {
 
 	}
 	
-	private Drawable clipIconAtIndex(int resourceId, int index, int totalIcons) {
-		
-		Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), resourceId);
-		int width = bitmap.getWidth() / totalIcons;
-		int x = index * width;
-		int y = 0;
-		bitmap = Bitmap.createBitmap(bitmap, x, y, width, bitmap.getHeight());
-
-		Drawable drawable = new BitmapDrawable(this.getResources(), bitmap);
-		return drawable;
-	}
 	
 	private void setupDrawables(View rootView) {
 
@@ -187,31 +176,31 @@ implements LaunchController, ExpandableListViewController {
 		final int buttonId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.BOTTOM_BAR_BUTTON_IMAGE);
 		
 		{
-			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 2, 11);
+			Drawable drawable = Utilities.clipIcon(this.getResources(), R.drawable.toolbar_1, 0, 1, 2, 11);
 			ImageView imageView = (ImageView) rootView.findViewById(itemId1).findViewById(buttonId);
 			imageView.setImageDrawable(drawable);
 		}
 		
 		{
-			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 3, 11);
+			Drawable drawable = Utilities.clipIcon(this.getResources(), R.drawable.toolbar_1, 0, 1, 3, 11);
 			ImageView imageView = (ImageView) rootView.findViewById(itemId2).findViewById(buttonId);
 			imageView.setImageDrawable(drawable);
 		}
 		
 		{
-			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 4, 11);
+			Drawable drawable = Utilities.clipIcon(this.getResources(), R.drawable.toolbar_1, 0, 1, 4, 11);
 			ImageView imageView = (ImageView) rootView.findViewById(itemId3).findViewById(buttonId);
 			imageView.setImageDrawable(drawable);
 		}
 	
 		{
-			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 5, 11);
+			Drawable drawable = Utilities.clipIcon(this.getResources(), R.drawable.toolbar_1, 0, 1, 5, 11);
 			ImageView imageView = (ImageView) rootView.findViewById(itemId4).findViewById(buttonId);
 			imageView.setImageDrawable(drawable);
 		}
 		
 		{
-			Drawable drawable = this.clipIconAtIndex(R.drawable.toolbar_1, 6, 11);
+			Drawable drawable = Utilities.clipIcon(this.getResources(), R.drawable.toolbar_1, 0, 1, 6, 11);
 			ImageView imageView = (ImageView) rootView.findViewById(itemId5).findViewById(buttonId);
 			imageView.setImageDrawable(drawable);
 		}
@@ -433,7 +422,7 @@ implements LaunchController, ExpandableListViewController {
 	private void showMenu(View anchorView) {
 		
 		if (this.menu == null) {
-			this.menu = new UCMMenu(this, new UCMMenuDefaultDataSource(), new UCMMenu.OnItemClickListener() {
+			this.menu = new UCMMenu(this, new UCMMenuDefaultDataSource(this), new UCMMenu.OnItemClickListener() {
 				@Override
 				public void onItemClick(int pagePosition, int itemPosition) {
 					Log.i("xxx", String.format("item %d at page %d clicked", itemPosition, pagePosition));

@@ -73,57 +73,15 @@ extends Object {
 		int y = this.getRelativeTop(anchorView);
 		
 		mPopupWindow.showAtLocation(anchorView, Gravity.LEFT | Gravity.TOP, x, y - mPopupWindow.getHeight());
-
-		mHandler.postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				showPopupWindowEnterAnimation();
-			}
-		}, 0);
 	}
 
 	public void dismiss() {
 		
-		if (mPopupWindow == null || !mPopupWindow.isShowing()) {
+		if (mPopupWindow == null || !mPopupWindow.isShowing() || mPopupWindow.isAnimating()) {
 			return;
 		}
 		
-		showPopupWindowExitAnimation(new Runnable() {
-			@Override
-			public void run() {
-				mPopupWindow.forceDismiss();
-			}
-		});
-	}
-	
-	private void showPopupWindowEnterAnimation() {
-		
-		Animation animation = new TranslateAnimation(0f, 0f, mContainViewRoot.getHeight(), 0f);
-		animation.setDuration(300);
-		animation.start();
-		mContainViewRoot.startAnimation(animation);
-	}
-	
-	private void showPopupWindowExitAnimation(final Runnable runnable) {
-		
-		Animation animation = new TranslateAnimation(0f, 0f, 0f, mContainViewRoot.getHeight());
-		animation.setDuration(300);
-		animation.start();
-		mContainViewRoot.startAnimation(animation);
-		
-		animation.setAnimationListener(new Animation.AnimationListener() {
-			
-			@Override
-			public void onAnimationStart(Animation animation) {}
-			
-			@Override
-			public void onAnimationRepeat(Animation animation) {}
-			
-			@Override
-			public void onAnimationEnd(Animation animation) {
-				mHandler.postDelayed(runnable, 0);
-			}
-		});
+		mPopupWindow.forceDismiss();
 	}
 	
 	private void setupViewsIfNeeded() {
@@ -137,7 +95,7 @@ extends Object {
 		mPopupWindow.setHeight(Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_height));
 		mPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
 		
-		mPopupWindow.setOutsideTouchable(true);
+		mPopupWindow.setOutsideTouchable(true); 
 		mPopupWindow.setTouchInterceptor(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
@@ -195,39 +153,16 @@ extends Object {
 				mHandler = new Handler();
 			}
 			
-			mHandler.postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					onViewPagerPageScrolled(0, 0, 0);
-				}
-			}, 100);
+			this.onViewPagerPageScrolled(0, 0, 0);
 		}
 		
 		{
-			mSliderView = new UCMMenuSliderView(
-					mContext,
-					Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_slider_width),
-					Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_slider_height)
-					);
+			this.createSliderViewIfNeeded();
 			
-			mSliderView.setBackgroundResource(R.drawable.list_divider);
-			int margin = Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_seperator_margin);
-			int height = Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_seperator_height);
-			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, height);
-			params.setMargins(margin, 0, margin, 0);
-			mSliderView.setLayoutParams(params);
 			mLinearLayoutVertical.addView(mSliderView);
 		}
 		
-		mViewPagerAdapter = new UCMMenuViewPagerAdapter(mContext, mDataSource, new UCMMenuGridViewAdapter.OnItemClickListener() {
-			
-			@Override
-			public void onItemClick(int pagePosition, int itemPosition) {
-				if (mOnItemClickListener != null) {
-					mOnItemClickListener.onItemClick(pagePosition, itemPosition);
-				}
-			}
-		});
+		this.createViewPagerAdapterIfNeeded();
 		
 		{
 			mViewPager = new ViewPager(mContext);
@@ -264,17 +199,7 @@ extends Object {
 			mViewPager.setLayoutParams(params);
 			mLinearLayoutVertical.addView(mViewPager);
 			
-			try {
-				
-				Class<?> c = Class.forName("android.support.v4.view.ViewPager");
-				Method  method = c.getMethod("setOverScrollMode", int.class);
-				method.invoke(mViewPager, 2);
-				
-			} catch (Exception e) {
-
-				Log.i("ucmmenudemo", String.format("%s", e.toString()));
-				return;
-			}
+			this.fixViewPagerOverScrollMode();
 		}
 		
 		
@@ -298,6 +223,56 @@ extends Object {
 		mPopupWindow.setContentView(mContainViewRoot);
 	}
 	
+	private void createViewPagerAdapterIfNeeded() {
+		if (mViewPagerAdapter == null) {
+			mViewPagerAdapter = new UCMMenuViewPagerAdapter(mContext, mDataSource, new UCMMenuGridViewAdapter.OnItemClickListener() {
+				@Override
+				public void onItemClick(int pagePosition, int itemPosition) {
+					if (mOnItemClickListener != null) {
+						mOnItemClickListener.onItemClick(pagePosition, itemPosition);
+					}
+				}
+			});
+		}
+	}
+
+	private void createSliderViewIfNeeded() {
+		
+		if (mSliderView == null) {
+			
+			mSliderView = new UCMMenuSliderView(
+					mContext,
+					Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_slider_width),
+					Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_slider_height),
+					this.getSliderTotalWidth()
+					);
+			
+			mSliderView.setBackgroundResource(R.drawable.list_divider);
+			mSliderView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+			int height = Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_seperator_height);
+			LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(this.getSliderTotalWidth(), height);
+			mSliderView.setLayoutParams(params);
+		}
+	}
+
+	private int getSliderTotalWidth() {
+		return Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_seperator_total_width);
+	}
+
+	private void fixViewPagerOverScrollMode() {
+		try {
+			
+			Class<?> c = Class.forName("android.support.v4.view.ViewPager");
+			Method  method = c.getMethod("setOverScrollMode", int.class);
+			method.invoke(mViewPager, 2);
+			
+		} catch (Exception e) {
+
+			Log.i("ucmmenudemo", String.format("%s", e.toString()));
+			return;
+		}
+	}
+
 	private void highlightTitle(int position) {
 		
 		for (int i = 0; i < mHeaderViews.length; ++i) {
@@ -337,15 +312,15 @@ extends Object {
 	
 	private void onViewPagerPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-		if (mSliderView != null) {
-
-			float w = mSliderView.getSliderWidth();
-			float l = mSliderView.getTotalWidth();
-			float t = (l - w * mViewPagerAdapter.getCount()) / (mViewPagerAdapter.getCount() * 2);
-			
-			float positionRate = (t + w / 2 + (w + 2 * t) * (position + positionOffset)) / l;
-			
-			mSliderView.setPositionRate(positionRate);
-		}
+		this.createSliderViewIfNeeded();
+		this.createViewPagerAdapterIfNeeded();
+		
+		float w = mSliderView.getSliderWidth();
+		float l = this.getSliderTotalWidth();
+		float t = (l - w * mViewPagerAdapter.getCount()) / (mViewPagerAdapter.getCount() * 2);
+		
+		float positionRate = (t + w / 2 + (w + 2 * t) * (position + positionOffset)) / l;
+		
+		mSliderView.setPositionRate(positionRate);
 	}
 }

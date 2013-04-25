@@ -1,25 +1,31 @@
 package com.example.ucmhomedemo21;
 
 import android.content.Context;
+import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 
 public class UCMMenuSliderView extends LinearLayout {
 
+
 	View mSliderImage;
 	int mSliderWidth;
 	int mSliderHeight;
 	float mPositionRate;
+	int mTotalWidth;
 	
-	public UCMMenuSliderView(Context context, int sliderWidth, int sliderHeight) {
+//	private Handler mHandler;
+	
+	public UCMMenuSliderView(Context context, int sliderWidth, int sliderHeight, int totalWidth) {
 		
 		super(context);
 		
 		mSliderWidth = sliderWidth;
 		mSliderHeight = sliderHeight;
+		mTotalWidth = totalWidth;
 		
 		this.setupViews();
-
+		
 		mPositionRate = 0f;
 		
 		this.onPositionRateChange();
@@ -59,9 +65,10 @@ public class UCMMenuSliderView extends LinearLayout {
 		float x = 1.0f * this.getTotalWidth() * mPositionRate - 0.5f * mSliderWidth;
 		
 		int leftMargin = (int)(0.5f + x);
+		int rightMargin = this.getTotalWidth() - mSliderWidth - leftMargin;
 		
 		LinearLayout.LayoutParams params = (LayoutParams) (mSliderImage.getLayoutParams());
-		params.setMargins(leftMargin, 0, 0, 0);
+		params.setMargins(leftMargin, 0, rightMargin, 0);
 	}
 
 	private void setupViews() {
@@ -69,6 +76,18 @@ public class UCMMenuSliderView extends LinearLayout {
 		if (mSliderImage == null) {
 			
 			mSliderImage = new View(this.getContext());
+			
+//			if (mHandler == null) {
+//				mHandler = new Handler();
+//			}
+//			
+//			mHandler.postDelayed(new Runnable() {
+//				@Override
+//				public void run() {
+//					setPositionRate(0);
+//				}
+//			}, 0);
+			
 			mSliderImage.setLayoutParams(new LinearLayout.LayoutParams(mSliderWidth, mSliderHeight));
 			mSliderImage.setBackgroundResource(R.drawable.menu_slidebar);
 			
@@ -76,18 +95,7 @@ public class UCMMenuSliderView extends LinearLayout {
 		}
 	}
 	
-	public int getTotalWidth() {
-		int ret = this.getWidth() - this.getPaddingLeft() - this.getPaddingRight();
-		return ret >= 0 ? ret : 0;
-	}
-
-	@Override
-	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		
-		if (changed) {
-			this.updateSliderViewPosition();
-		}
-		
-		super.onLayout(changed, l, t, r, b);
+	private int getTotalWidth() {
+		return mTotalWidth;
 	}
 }

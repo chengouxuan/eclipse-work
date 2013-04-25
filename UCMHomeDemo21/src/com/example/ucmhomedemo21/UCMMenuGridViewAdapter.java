@@ -78,18 +78,21 @@ public class UCMMenuGridViewAdapter extends BaseAdapter {
 		ImageView icon = new ImageView(mContext);
 		icon.setId(iconId);
 		icon.setScaleType(ScaleType.CENTER_INSIDE);
-		icon.setImageResource(mDataSource.getItemIconResourceId(mPagePosition, itemPosition));
+		icon.setImageDrawable(mDataSource.getItemIcon(mPagePosition, itemPosition));
 		icon.setLayoutParams(new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
 		layout.addView(icon);
 		
 		TextView title = new TextView(mContext);
 		title.setId(titleId);
 		title.setText(mDataSource.getItemTitle(mPagePosition, itemPosition));
+		title.setTextSize(12);
 		title.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 		RelativeLayout.LayoutParams titleLayoutParams = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 		titleLayoutParams.addRule(RelativeLayout.BELOW, iconId);
 		title.setLayoutParams(titleLayoutParams);
 		layout.addView(title);
+		
+		layout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
 		
 		return layout;
 	}
