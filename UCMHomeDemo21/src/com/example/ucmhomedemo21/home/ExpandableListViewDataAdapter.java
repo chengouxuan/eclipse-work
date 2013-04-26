@@ -1,5 +1,10 @@
 package com.example.ucmhomedemo21.home;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import com.example.ucmhomedemo21.GlobalViewIds;
 import com.example.ucmhomedemo21.R;
 
@@ -8,9 +13,11 @@ import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
@@ -18,6 +25,9 @@ import android.widget.TextView;
 
 
 public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
+
+//	boolean useWebView = false;
+	boolean useWebView = true;
 
 	private Context context;
 	private ExpandableListViewController expandableListViewController;
@@ -44,15 +54,48 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 
 	@Override
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+
+		View view = null;
 		
-		TextView view = new TextView(this.getContext());
-		view.setText("child view of an expandable list view");
-		view.setTextColor(this.getContext().getResources().getColor(R.color.common_gray_color));
-		view.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+		if (useWebView && 0 <= groupPosition && groupPosition < DataSource.fileName.length) {
+			
+			WebView webView = new WebView(this.getContext());
+			webView.getSettings().setDefaultTextEncodingName("utf-8");
+			InputStream stream = null;
+			String data = "";
+			try {
+				
+				stream = this.getContext().getAssets().open(DataSource.fileName[groupPosition]);
+				BufferedReader r = new BufferedReader(new InputStreamReader(stream));
+				
+				String x = null;
+				while((x = r.readLine()) != null){
+					data += x;
+					Log.i("xxx", x);
+				}
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+				Log.i("xxx", "fail to load data");
+			}
+
+			webView.loadDataWithBaseURL(null, data, "text/html", "utf-8", null); 
+			
+			view = webView; 
+			
+		} else {
+
+			TextView textView = new TextView(this.getContext());
+			textView.setText("child view of an expandable list view");
+			textView.setTextColor(this.getContext().getResources().getColor(R.color.common_gray_color));
+			textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+			
+			view = textView;
+		}
 		
 		float minHeight = this.getContext().getResources().getDimension(R.dimen.navigation_child_item_height);
-		view.setMinHeight((int)(0.5f + minHeight));
-
+		view.setMinimumHeight((int)(0.5f + minHeight));
+		
 		return view;
 	}
 
