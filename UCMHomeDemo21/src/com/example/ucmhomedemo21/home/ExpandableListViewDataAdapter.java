@@ -71,7 +71,6 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 				String x = null;
 				while((x = r.readLine()) != null){
 					data += x;
-					Log.i("xxx", x);
 				}
 				
 			} catch (IOException e) {
