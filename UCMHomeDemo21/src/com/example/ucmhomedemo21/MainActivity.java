@@ -18,6 +18,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -119,6 +120,7 @@ implements LaunchController, ExpandableListViewController {
 
 		final int listViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_LIST_VIEW);
 		final int hotSitesViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.HOT_SITES_LIST_VIEW);
+		final int editTextId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.ADDRESS_BAR_EDIT_TEXT);
 		
 		ExpandableListViewDataAdapter adapter = new ExpandableListViewDataAdapter(this);
 		NavigationExpandableListView listView = (NavigationExpandableListView) contentView.findViewById(listViewId);
@@ -165,6 +167,13 @@ implements LaunchController, ExpandableListViewController {
 		this.fixOverScrollModes(contentView);
 
 		this.setContentView(contentView);
+		
+		this.dismissKeyboard((EditText) contentView.findViewById(editTextId));
+	}
+
+	private void dismissKeyboard(EditText editText) {
+		InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
 	}
 
 	public void anyButtonClicked(View senderView) {
@@ -276,6 +285,12 @@ implements LaunchController, ExpandableListViewController {
 		{
 			Button button = (Button) rootView.findViewById(itemId3).findViewById(buttonId);
 			button.setBackgroundResource(R.drawable.bottom_bar_item_selector_landscape);
+			button.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					showMenu(v);
+				}
+			});
 		}
 		{
 			Button button = (Button) rootView.findViewById(itemId4).findViewById(buttonId);
@@ -438,9 +453,18 @@ implements LaunchController, ExpandableListViewController {
 		}
 
 		if (this.menu.isShowing()) {
+			
 			this.menu.dismiss();
+			
 		} else {
-			this.menu.show(anchorView);
+			
+			boolean isLandscape = (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE);
+			
+			if (isLandscape) {
+				this.menu.show(anchorView, UCMMenu.EnterType.DOWN);
+			} else {
+				this.menu.show(anchorView, UCMMenu.EnterType.UP);
+			}
 		}
 	}
 }

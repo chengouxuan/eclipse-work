@@ -3,15 +3,15 @@ package com.example.ucmhomedemo21.menu;
 
 import java.lang.reflect.Method;
 
-import com.example.ucmhomedemo21.R;
-import com.example.ucmhomedemo21.Utilities;
-
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +19,9 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.ucmhomedemo21.R;
+import com.example.ucmhomedemo21.Utilities;
 
 public class UCMMenu
 
@@ -42,11 +45,19 @@ extends Object {
 	
 	private Handler mHandler;
 	
+	private EnterType mEnterType;
+	
 	public interface OnItemClickListener {
 		abstract public void onItemClick(int pagePosition, int itemPosition);
 	}
 
 	private OnItemClickListener mOnItemClickListener;
+
+	private View mAnchorView;
+
+	private int mArrowRightWidth;
+
+	private int mArrowLeftWidth;
 
 	private final static float VIEW_PAGER_WEIGHT = 4;
 	private final static float HEADERS_LAYOUT_WEIGHT = 1;
@@ -61,14 +72,49 @@ extends Object {
 		return (mPopupWindow != null && mPopupWindow.isShowing());
 	}
 	
-	public void show(View anchorView) {
+	public enum EnterType {
+		DOWN,
+		UP
+	}
+	
+	private void setupArrowPosition(int popupWindowShowPositionX, int popupWindowWidth) {
 		
-		setupViewsIfNeeded();
+		Display display = ((Activity) mContext).getWindowManager().getDefaultDisplay();
+		int width = display.getWidth();
 		
+		mArrowLeftWidth = popupWindowWidth / 2;
+		
+		int diff = popupWindowShowPositionX + popupWindowWidth - width;
+		
+		if (diff > 0) {
+			mArrowLeftWidth += diff;
+		}
+
+		if (popupWindowShowPositionX < 0) {
+			mArrowLeftWidth += popupWindowShowPositionX;
+		}
+		
+		mArrowRightWidth = popupWindowWidth - mArrowLeftWidth;
+	}
+	
+	public void show(View anchorView, EnterType showType) {
+
+		mEnterType = showType;
+
 		int x = this.getRelativeLeft(anchorView);
 		int y = this.getRelativeTop(anchorView);
 		
-		mPopupWindow.showAtLocation(anchorView, Gravity.LEFT | Gravity.TOP, x, y - mPopupWindow.getHeight());
+		int xOffset = (int)(anchorView.getWidth() / 2f - this.getPopupWindowWidth() / 2f + 0.5f);
+		
+		this.setupArrowPosition(x + xOffset, this.getPopupWindowWidth());
+		
+		setupViewsIfNeeded();
+		
+		if (showType == EnterType.UP) {
+			mPopupWindow.showAtLocation(anchorView, Gravity.LEFT | Gravity.TOP, x + xOffset, y - mPopupWindow.getHeight(), UCMMenuInternal.EnterType.UP);
+		} else {
+			mPopupWindow.showAtLocation(anchorView, Gravity.LEFT | Gravity.TOP, x + xOffset, y + anchorView.getHeight(), UCMMenuInternal.EnterType.DOWN);
+		}
 	}
 
 	public void dismiss() {
@@ -87,8 +133,9 @@ extends Object {
 		}
 		
 		mPopupWindow = new UCMMenuInternal(mContext);
-		mPopupWindow.setWidth(Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_width));
-		mPopupWindow.setHeight(Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_height));
+		mPopupWindow.setAnimationAnchorX(mArrowLeftWidth);
+		mPopupWindow.setWidth(this.getPopupWindowWidth());
+		mPopupWindow.setHeight(this.getPopupWindowHeight());
 		mPopupWindow.setBackgroundDrawable(new ColorDrawable(0));
 		
 		mPopupWindow.setOutsideTouchable(true); 
@@ -199,8 +246,11 @@ extends Object {
 		}
 		
 		
-		
-		mBackground = new UCMMenuBackgroundLayout(mContext);
+		if (mEnterType == EnterType.UP) {
+			mBackground = new UCMMenuBackgroundLayout(mContext, UCMMenuBackgroundLayout.ArrowType.ON_BOTTOM, mArrowLeftWidth, mArrowRightWidth);
+		} else {
+			mBackground = new UCMMenuBackgroundLayout(mContext, UCMMenuBackgroundLayout.ArrowType.ON_TOP, mArrowLeftWidth, mArrowRightWidth);
+		}
 		
 		
 		mContainViewRoot = new RelativeLayout(mContext);
@@ -219,6 +269,14 @@ extends Object {
 		mPopupWindow.setContentView(mContainViewRoot);
 	}
 	
+	private int getPopupWindowHeight() {
+		return Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_height);
+	}
+
+	private int getPopupWindowWidth() {
+		return Utilities.getRoundedDimension(mContext.getResources(), R.dimen.menu_width);
+	}
+
 	private void createViewPagerAdapterIfNeeded() {
 		if (mViewPagerAdapter == null) {
 			mViewPagerAdapter = new UCMMenuViewPagerAdapter(mContext, mDataSource, new UCMMenuGridViewAdapter.OnItemClickListener() {
