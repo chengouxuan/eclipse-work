@@ -81,7 +81,7 @@ public class UCMMenuInternal extends PopupWindow {
 		if (mEnterType == EnterType.UP) {
 			
 			animation = new TranslateAnimation(0f, 0f, this.getContentView().getHeight(), 0f);
-			animation.setDuration(500);
+			animation.setDuration(350);
 			
 		} else {
 
