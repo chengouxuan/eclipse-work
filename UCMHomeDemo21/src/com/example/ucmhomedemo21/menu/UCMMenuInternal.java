@@ -1,4 +1,4 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.menu;
 
 import android.content.Context;
 import android.os.Handler;
@@ -70,10 +70,7 @@ public class UCMMenuInternal extends PopupWindow {
 			}
 			
 			@Override
-			public void onAnimationRepeat(Animation animation) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void onAnimationRepeat(Animation animation) {}
 			
 			@Override
 			public void onAnimationEnd(Animation animation) {

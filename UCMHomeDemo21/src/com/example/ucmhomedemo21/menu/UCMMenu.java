@@ -1,15 +1,14 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.menu;
 
 
 import java.lang.reflect.Method;
 
 import com.example.ucmhomedemo21.R;
-import com.example.ucmhomedemo21.R.anim;
+import com.example.ucmhomedemo21.Utilities;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
-import android.support.v4.app.NotificationCompat.Action;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -17,10 +16,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 

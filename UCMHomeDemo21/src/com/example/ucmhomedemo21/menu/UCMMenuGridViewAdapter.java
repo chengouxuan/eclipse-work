@@ -1,5 +1,8 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.menu;
 
+
+import com.example.ucmhomedemo21.R;
+import com.example.ucmhomedemo21.Utilities;
 
 import android.content.Context;
 import android.view.Gravity;

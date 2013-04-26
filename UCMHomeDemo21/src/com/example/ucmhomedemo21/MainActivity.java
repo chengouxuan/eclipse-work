@@ -2,6 +2,16 @@ package com.example.ucmhomedemo21;
 
 import java.lang.reflect.Method;
 
+import com.example.ucmhomedemo21.home.ExpandableListViewController;
+import com.example.ucmhomedemo21.home.ExpandableListViewDataAdapter;
+import com.example.ucmhomedemo21.home.GridViewDataAdapter;
+import com.example.ucmhomedemo21.home.HomeLayoutLandscape;
+import com.example.ucmhomedemo21.home.HomeLayoutPortrait;
+import com.example.ucmhomedemo21.home.HotSitesGridView;
+import com.example.ucmhomedemo21.home.NavigationExpandableListView;
+import com.example.ucmhomedemo21.menu.UCMMenu;
+import com.example.ucmhomedemo21.menu.UCMMenuDefaultDataSource;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
@@ -17,9 +27,6 @@ import android.widget.ListView;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 public class MainActivity

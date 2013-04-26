@@ -1,4 +1,7 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.home;
+
+import com.example.ucmhomedemo21.GlobalViewIds;
+import com.example.ucmhomedemo21.R;
 
 import android.content.Context;
 import android.content.res.Resources;

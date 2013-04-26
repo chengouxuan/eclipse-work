@@ -1,4 +1,6 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.menu;
+
+import com.example.ucmhomedemo21.R;
 
 import android.content.Context;
 import android.util.AttributeSet;

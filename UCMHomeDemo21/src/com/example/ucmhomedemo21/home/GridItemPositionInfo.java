@@ -1,4 +1,4 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.home;
 
 public interface GridItemPositionInfo {
 

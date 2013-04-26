@@ -1,4 +1,4 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.menu;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
@@ -39,25 +39,28 @@ extends PagerAdapter {
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 
-		GridView gridView = new GridView(mContext);
-		gridView.setAdapter(new UCMMenuGridViewAdapter(mContext, mDataSource, position, mOnItemClickListener));
-		gridView.setNumColumns(mDataSource.getColumnCount(position));
-		gridView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
-//		gridView.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		GridView gridView = null;
 		
 		if (container != null) {
-			gridView.setId(this.getViewId(position));
-			container.addView(gridView);
+			gridView = (GridView) container.findViewById(this.getViewId(position));
+		}
+		
+		if (gridView == null) {
+			
+			gridView = new GridView(mContext);
+			gridView.setAdapter(new UCMMenuGridViewAdapter(mContext, mDataSource, position, mOnItemClickListener));
+			gridView.setNumColumns(mDataSource.getColumnCount(position));
+			gridView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+			
+			if (container != null) {
+				gridView.setId(this.getViewId(position));
+				container.addView(gridView);
+			}
 		}
 		
 		return gridView;
 	}
 	
 	@Override
-	public void destroyItem(ViewGroup container, int position, Object object) {
-		if (container != null) {
-			View view = container.findViewById(this.getViewId(position));
-			container.removeView(view);
-		}
-	}
+	public void destroyItem(ViewGroup container, int position, Object object) {}
 }

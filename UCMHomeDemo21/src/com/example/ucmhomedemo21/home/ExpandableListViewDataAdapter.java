@@ -1,4 +1,7 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.home;
+
+import com.example.ucmhomedemo21.GlobalViewIds;
+import com.example.ucmhomedemo21.R;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -20,7 +23,7 @@ public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 	private ExpandableListViewController expandableListViewController;
 	private ExpandableListView expandableListView;
 	
-	ExpandableListViewDataAdapter(Context context) {
+	public ExpandableListViewDataAdapter(Context context) {
 		this.setContext(context);
 	}
 

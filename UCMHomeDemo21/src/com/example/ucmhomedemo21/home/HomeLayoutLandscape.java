@@ -1,4 +1,10 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.home;
+
+import com.example.ucmhomedemo21.GlobalViewIds;
+import com.example.ucmhomedemo21.R;
+import com.example.ucmhomedemo21.common.AddressBarLayout;
+import com.example.ucmhomedemo21.common.BottomBarItemLayout;
+import com.example.ucmhomedemo21.common.QuickButtonLayout;
 
 import android.content.Context;
 import android.content.res.Resources;

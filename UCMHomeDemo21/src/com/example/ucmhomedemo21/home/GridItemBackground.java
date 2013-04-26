@@ -1,4 +1,4 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.home;
 
 import android.content.Context;
 import android.graphics.Canvas;

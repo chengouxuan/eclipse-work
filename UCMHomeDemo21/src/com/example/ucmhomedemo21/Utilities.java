@@ -8,9 +8,7 @@ import android.graphics.drawable.Drawable;
 
 public class Utilities extends Object {
 
-	public Utilities() {
-		// TODO Auto-generated constructor stub
-	}
+	public Utilities() {}
 
 
 	public static int getRoundedDimension(Resources resources, int resourceId) {

@@ -1,7 +1,8 @@
-package com.example.ucmhomedemo21;
+package com.example.ucmhomedemo21.menu;
+
+import com.example.ucmhomedemo21.R;
 
 import android.content.Context;
-import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -14,7 +15,9 @@ public class UCMMenuSliderView extends LinearLayout {
 	float mPositionRate;
 	int mTotalWidth;
 	
-//	private Handler mHandler;
+	public UCMMenuSliderView(Context context) {
+		super(context);
+	}
 	
 	public UCMMenuSliderView(Context context, int sliderWidth, int sliderHeight, int totalWidth) {
 		
@@ -76,17 +79,6 @@ public class UCMMenuSliderView extends LinearLayout {
 		if (mSliderImage == null) {
 			
 			mSliderImage = new View(this.getContext());
-			
-//			if (mHandler == null) {
-//				mHandler = new Handler();
-//			}
-//			
-//			mHandler.postDelayed(new Runnable() {
-//				@Override
-//				public void run() {
-//					setPositionRate(0);
-//				}
-//			}, 0);
 			
 			mSliderImage.setLayoutParams(new LinearLayout.LayoutParams(mSliderWidth, mSliderHeight));
 			mSliderImage.setBackgroundResource(R.drawable.menu_slidebar);
