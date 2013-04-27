@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -121,7 +120,6 @@ implements LaunchController, ExpandableListViewController {
 
 		final int listViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.NAVIGATION_LIST_VIEW);
 		final int hotSitesViewId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.HOT_SITES_LIST_VIEW);
-		final int editTextId = GlobalViewIds.getIdOf(GlobalViewIds.Ids.ADDRESS_BAR_EDIT_TEXT);
 		
 		ExpandableListViewDataAdapter adapter = new ExpandableListViewDataAdapter(this);
 		NavigationExpandableListView listView = (NavigationExpandableListView) contentView.findViewById(listViewId);

@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
@@ -52,8 +51,6 @@ extends Object {
 	}
 
 	private OnItemClickListener mOnItemClickListener;
-
-	private View mAnchorView;
 
 	private int mArrowRightWidth;
 

@@ -26,8 +26,8 @@ import android.widget.TextView;
 
 public class ExpandableListViewDataAdapter implements ExpandableListAdapter {
 
-//	boolean useWebView = false;
-	boolean useWebView = true;
+	boolean useWebView = false;
+//	boolean useWebView = true;
 
 	private Context context;
 	private ExpandableListViewController expandableListViewController;
