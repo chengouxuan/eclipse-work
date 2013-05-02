@@ -1,0 +1,7 @@
+<com.example.daynightswitch.sprite.impl.SunMainSprite xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/imgview_"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scaleType="centerCrop"
+    android:src="@drawable/dot"
+    android:visibility="visible" />

@@ -1,0 +1,16 @@
+<resources>
+    
+    <color name="common_gray_color">#88888888</color>
+    <color name="no_color">#00000000</color>
+    
+	<color name="hot_sites_item_description_text_color">#99000000</color>
+	
+	<color name="navigation_item_text_color">#99000000</color>
+	<color name="navigation_item_detail_text_color">#77777777</color>
+    
+    <color name="red_color">#ffff0000</color>
+    <color name="gray_color">#ff777777</color>
+    <color name="green_color">#ff00ff00</color>
+    <color name="white_color">#ffffffff</color>
+    
+</resources>

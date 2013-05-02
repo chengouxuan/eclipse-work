@@ -1,0 +1,51 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mm2" >
+
+    <com.uc.viewdelete.DisappearView
+        android:id="@+id/disappear_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <include layout="@layout/disappear_view" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/trashcan_bg"
+        android:gravity="center_horizontal"
+        android:text="@string/hello_world"
+        android:textColor="@android:color/black" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/trashcan_bg" >
+
+        <ImageView
+            android:id="@+id/revert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/button_press"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/revert" />
+
+        <ImageView
+            android:id="@+id/trashcan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/button_press"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/trashcan" />
+    </RelativeLayout>
+
+</FrameLayout>
